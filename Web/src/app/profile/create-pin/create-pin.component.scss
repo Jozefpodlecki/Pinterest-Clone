@@ -1,0 +1,64 @@
+$white: white;
+
+:host {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.create-pin {
+
+    &__content {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__image {
+        width: 300px;
+        height: 300px;
+        padding: 1rem;
+        border: 1px dashed black;
+    }
+
+    &__field {
+        margin-top: 1rem;
+    }
+
+    &__input, &__textarea {
+        display: block;
+        width: 100%;
+        background: transparent;
+        color: transparentize($white, 0.2);
+        border: none;
+        padding: .5rem;
+        font-size: 1rem;
+
+        &::placeholder {
+            color: transparentize($white, 0.5);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__textarea {
+        font-family: Arial, Helvetica, sans-serif;
+        resize: vertical;
+    }
+
+    &__submit {
+        color: $white;
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: .5rem;
+        font-size: 1rem;
+        border: 1px solid white;
+        cursor: pointer;
+        transition: background .3s ease-in;
+
+    }
+}

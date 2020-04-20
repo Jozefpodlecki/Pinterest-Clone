@@ -1,0 +1,30 @@
+<div class="content">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <loader *ngIf="loading; else elseBlock">
+        </loader>
+        <ng-template #elseBlock>
+            <div class="field">
+                <label for="usernameOrEmail">Username/Email</label>
+                <input class="field__input" formControlName="usernameOrEmail" type="text" placeholder="Enter username or email..."/>
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input class="field__input" formControlName="password" type="password" placeholder="Enter password..."/>
+            </div>
+            <div class="field field__submitWrapper">
+                <button [disabled]="loginForm.invalid" class="field__submit" type="submit">
+                    Sign In
+                </button>
+            </div>
+            <div class="field__error" [class.field__error--active]="serverError">
+                Invalid user/email or password
+            </div>
+        </ng-template>
+        <div class="field field__socialWrapper">
+            <div class="field__social" (click)="signInWithGithub()">
+                <a class="field__socialText" href="/github">Sign in with Github</a>
+                <fa-icon [icon]="faGithub" size="2x"></fa-icon>
+            </div>
+        </div>
+    </form>
+</div>

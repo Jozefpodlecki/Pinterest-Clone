@@ -1,0 +1,79 @@
+$white: white;
+
+.comment {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    border: 1px solid $white;
+    padding: 0.5rem;
+
+    &__avatar {
+        flex: 0 0 50px;
+        height: 50px;
+        margin-right: 1rem;
+    }
+
+    &__content {
+        margin: .5rem 0;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__headerLeft {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+
+    &__footer {
+        display: flex;
+    }
+
+    &__action {
+        margin: 0 .5rem;
+        cursor: pointer;
+    }
+
+    &__formWrapper {
+        margin-top: 1rem;
+        flex: 0 0 100px;
+    }
+
+    &__form {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+    }
+
+    &__textareaWrapper {
+        flex: 1 1 auto;
+    }
+
+    &__textarea {
+        background: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+        border: none;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        background: transparentize($white, .8);
+        color: $white;
+
+        &::placeholder {
+            color: transparentize($white, .2);
+        }
+    }
+
+    &__sendButton {
+        padding: 1rem;
+        color: black;
+        border: none;
+        background: transparentize($white, .5);
+        height: 100%;
+        cursor: pointer;
+    }
+}

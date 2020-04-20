@@ -1,0 +1,51 @@
+$white: white;
+$black: #000;
+
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+    z-index: -1;
+    opacity: 0;
+    
+    background: transparentize($black, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.is-active {
+        z-index: 1;
+        opacity: 1;
+    }
+}
+
+.modal {
+    flex: 0 1 600px;
+
+    &__close {
+        cursor: pointer;
+    }
+    
+    &__header {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: right;
+    }
+
+    &__content {
+        padding: 0 1rem;   
+    }
+    
+    &__actions {
+        display: flex;
+        justify-content: center;
+    }
+    
+    &__action {
+        padding: .5rem;
+        cursor: pointer;
+    }
+}

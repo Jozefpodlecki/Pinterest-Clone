@@ -1,0 +1,32 @@
+<div class="dashboard__header">
+    <div class="dashboard__searchWrapper">
+        <div class="dashboard__searchBox" [class.dashboard__searchBox--active]="isSearchActive">
+            <input
+                [(ngModel)]="search"
+                (ngModelChange)="onSearch($event)"
+                (focus)="onFocus()"
+                (blur)="onBlur()"
+                class="dashboard__searchInput"
+                type="text"
+                [placeholder]="searchPlaceholder"/>
+        </div>
+        <div (click)="clearText()" class="dashboard__clearIcon" [class.dashboard__clearIcon--active]="canClearText">
+            <fa-icon [icon]="faTimes" size="2x"></fa-icon>
+        </div>
+    </div>
+</div>
+<div class="dashboard__content" [@imagesAnimation]="images.length">
+    <card
+        (zoomIn)="zoomIn($event)"
+        (addImage)="addImage()"
+        (reportImage)="reportImage()"
+        (shareImage)="shareImage()"
+        *ngFor="let image of images; trackBy: trackById"
+        [background]="image.link">
+    </card>
+</div>
+<image-report-modal [isActive]="isReportModalActive" (closeModal)="isReportModalActive = false"></image-report-modal>
+<image-share-modal [isActive]="isShareModalActive" (closeModal)="isShareModalActive = false"></image-share-modal>
+<image-add-modal [modalData]="modalData" [isActive]="isAddModalActive" (closeModal)="isAddModalActive = false"></image-add-modal>
+<login-modal [isActive]="isLoginModalActive" (closeModal)="isLoginModalActive = false"></login-modal>
+<zoom-image-modal [modalData]="modalData" [isActive]="isZoomInModalActive" (closeModal)="isZoomInModalActive = false"></zoom-image-modal>

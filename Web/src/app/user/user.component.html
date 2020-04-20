@@ -1,0 +1,17 @@
+<div class="user__header">
+    <img class="user__avatar" [src]="avatar" alt="avatar"/>
+</div>
+<div class="user__collection">
+    <div class="user__item" *ngFor="let item of collection">
+        <div class="user__category">{{item.category}}</div>
+        <div class="user__images">
+            <!-- <div class="user__image"  [ngStyle]="computeStyle(image.link)"></div> -->
+            <user-card [background]="image.link" *ngFor="let image of item.images"></user-card>
+        </div>
+    </div>
+</div>
+<zoom-image-modal [isActive]="isZoomModalActive"></zoom-image-modal>
+<image-add-modal [isActive]="isAddModalActive"></image-add-modal>
+<image-report-modal [isActive]="isReportModalActive"></image-report-modal>
+<image-share-modal [isActive]="isShareModalActive"></image-share-modal>
+<image-remove-modal [isActive]="isRemoveModalActive"></image-remove-modal>

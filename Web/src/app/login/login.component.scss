@@ -1,0 +1,78 @@
+$white: white;
+
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    flex: 0 1 400px;
+    border: 1px solid $white;
+    padding: 1rem;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    &__input, &__submit {
+        background: transparent;
+        color: $white;
+        border: none;
+        padding: .5rem;
+    }
+
+    &__input {
+        font-size: 1rem;
+        
+        &::placeholder {
+            color: lightgray;
+        }
+    }
+
+    &__submitWrapper, &__socialWrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__submit, &__social {
+        border: 1px solid transparentize($white, 0.5);
+        padding: .5rem 1rem;
+        cursor: pointer;
+    }
+
+    &__submit {
+        font-size: 1rem;
+
+        &:disabled {
+            color: lightgray;
+        }
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+    }
+
+    &__socialText {
+        margin-right: 1rem;
+    }
+
+    &__error {
+        margin-top: 1rem;
+        color: #FF0801EE;
+        text-align: center;
+        background: #FFFFFFAA;
+        padding: .5rem;
+        display: none;
+
+        &--active {
+            display: block;
+        }
+    }
+}

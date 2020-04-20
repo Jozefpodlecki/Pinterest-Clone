@@ -1,0 +1,45 @@
+$white: white;
+$black: #000;
+
+
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: transparentize($black, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity .3s ease-in;
+
+    &.is-active {
+        z-index: 1;
+        opacity: 1;
+    }
+}
+
+.zoom-image-modal {
+    &__header {
+        padding: 1rem;
+        text-align: right;
+    }
+
+    &__close {
+        cursor: pointer;
+    }
+
+    &__content {
+        flex: 0 1 500px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image {
+        flex: 1 1 auto;
+    }
+}

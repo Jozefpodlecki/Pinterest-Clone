@@ -1,0 +1,15 @@
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <div>
+        <div>Background Image</div>
+        <div (click)="selectImage">
+    
+        </div>
+    </div>
+    <div>
+        Display Name
+        <input type="text" formControlName="displayName" placeholder="Enter display name"/>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>

@@ -1,0 +1,6 @@
+<div>{{author}}</div>
+<div class="footer__actions">
+    <a class="footer__action" *ngFor="let social of socials" [href]="social.link">
+        <fa-icon [icon]="social.icon"></fa-icon>
+    </a>
+</div>

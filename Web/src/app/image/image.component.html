@@ -1,0 +1,28 @@
+<div class="image__header">
+    <a routerLink="/">
+        <fa-icon class="image__backIcon" [icon]="faArrowLeft" size="2x"></fa-icon>
+    </a>
+</div>
+<div class="image__content">
+    <div #imageWrapper class="image__left">
+        <div class="image__background" [ngStyle]="backgroundStyle"></div>
+        <div class="image__actions">
+
+        </div>
+    </div>
+    <div class="image__right">
+        <div class="image__details">
+            <div class="image__title">{{title}}</div>
+            <div class="image__description">{{description}}</div>
+        </div>
+        <div class="image__comments">
+            <div class="image__commentsWrapper">
+                <comment [comment]="comment" class="comment" *ngFor="let comment of comments">
+                </comment>
+            </div>
+        </div>
+        <div class="comment__formWrapper">
+            <add-comment-form></add-comment-form>
+        </div>
+    </div>
+</div>

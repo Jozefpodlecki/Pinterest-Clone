@@ -1,0 +1,23 @@
+<a class="navbar__logo" routerLink="/">
+    {{appName}}
+</a>
+<div class="navbar__actions" [ngSwitch]="state">
+    <ng-container *ngSwitchCase="'loggedIn'">
+        <div class="navbar__label">Hello, {{displayName}}</div>
+        <button class="navbar__action navbar__button" routerLink="/settings">
+            <fa-icon [icon]="faCog"></fa-icon>
+        </button>
+        <a (click)="signOut()" href="/sign-out" class="navbar__action navbar__button">
+            Sign Out
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+        </a>
+        <img class="navbar__image" [src]="avatar" alt="profile image"/>
+    </ng-container>
+    <loader *ngSwitchCase="'loading'"></loader>
+    <ng-container *ngSwitchCase="'notloggedin'">
+        <button class="navbar__action navbar__button" (click)="signIn()">
+            Sign In
+            <fa-icon [icon]="faSignInAlt"></fa-icon>
+        </button>
+    </ng-container>
+</div>

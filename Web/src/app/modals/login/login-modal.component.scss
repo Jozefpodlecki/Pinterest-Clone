@@ -1,0 +1,91 @@
+$white: white;
+$black: #000;
+
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: transparentize($black, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity .3s ease-in;
+
+    &.is-active {
+        z-index: 1;
+        opacity: 1;
+    }
+}
+
+.content {
+    padding: 1rem;
+    border: 1px solid transparentize($white, 0.5);
+    
+    &__wrapper {
+        flex: 0 1 500px;
+    }
+
+    &__header {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    &__close {
+        text-align: right;
+    }
+
+    &__closeIcon {
+        cursor: pointer;
+    }
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    &__input, &__submit {
+        background: transparent;
+        color: $white;
+        border: none;
+        padding: .5rem;
+    }
+
+    &__input {
+        font-size: 1rem;
+        
+        &::placeholder {
+            color: lightgray;
+        }
+    }
+
+    &__submitWrapper, &__socialWrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__submit, &__social {
+        border: 1px solid transparentize($white, 0.5);
+        padding: .5rem 1rem;
+        cursor: pointer;
+    }
+
+    &__submit {
+        font-size: 1rem;
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+    }
+
+    &__socialText {
+        margin-right: 1rem;
+    }
+}

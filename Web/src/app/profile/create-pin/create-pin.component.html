@@ -1,0 +1,15 @@
+<div class="create-pin__content" [formGroup]="createPinForm" (ngSubmit)="onSubmit()">
+    <form autocomplete="off">
+        <image-upload formControlName="image" (fileSelected)="fileSelected()"></image-upload>
+        <div class="create-pin__field">
+            <input [(ngModel)]="title" class="create-pin__input" formControlName="title" type="text" placeholder="Enter title..."/>
+        </div>
+        <div class="create-pin__field">
+            <textarea class="create-pin__textarea" formControlName="description" placeholder="Describe image...">
+            </textarea>
+        </div>
+        <div class="create-pin__field">
+            <button class="create-pin__submit" type="submit">Create</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: border .3s  ease-in;
+
+    &.selected {
+        border: 1px solid white;
+    }
+}
+
+.background {
+    position: absolute;
+    z-index: -1;
+    filter: brightness(.5);
+    transition: filter .3s  ease-in;
+
+    &--active {
+        filter: brightness(.8);
+    }
+}

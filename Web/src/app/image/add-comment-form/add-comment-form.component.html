@@ -1,0 +1,10 @@
+<form class="comment__form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <div class="comment__textareaWrapper">
+        <textarea class="comment__textarea" formControlName="text" placeholder="Whats on your mind when you see that image?"></textarea>
+    </div>
+    <div class="comment__sendButtonWrapper">
+        <button class="comment__sendButton" type="submit">
+            <fa-icon [icon]="faPaperPlane" size="2x"></fa-icon>
+        </button>
+    </div>
+</form>
