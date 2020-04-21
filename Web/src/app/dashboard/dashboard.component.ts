@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener, Inject } from '@angular/core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import ImageService from 'src/app/image-service';
-import { Image } from '../models/Image';
-import UserService from '../user-service';
+import { faTimes, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import ImageService from '@services/image-service';
+import { Image } from '@models/Image';
+import UserService from '@services/user-service';
 import { trigger, transition, query, style, stagger, animate, keyframes } from '@angular/animations';
-import { trackById } from 'src/utils';
+import { trackById } from 'utils';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -49,6 +49,7 @@ import { DOCUMENT } from '@angular/common';
 export class DashboardComponent implements OnInit {
   trackById = trackById;
   faTimes = faTimes;
+  faSyncAlt = faSyncAlt;
 
   search: string;
   defaultPlaceholder: string;
@@ -63,6 +64,8 @@ export class DashboardComponent implements OnInit {
   modalData: object;
   images: Image[];
   defaultCriteria: { value: string; page: number; pageSize: number; };
+  serverError: boolean;
+  state: string;
 
   constructor(
     private _userService: UserService,
@@ -85,6 +88,7 @@ export class DashboardComponent implements OnInit {
       page: 0,
       pageSize: 10
     };
+    this.state = 'loading';
   }
 
   ngOnInit(): void {
@@ -95,6 +99,9 @@ export class DashboardComponent implements OnInit {
     this._imageService.getImages(criteria)
       .subscribe(images => {
         this.images = images;
+        this.state = 'data';
+      }, error => {
+        this.state = 'error';
       })
   }
 
@@ -137,6 +144,21 @@ export class DashboardComponent implements OnInit {
     }
 
     this.canClearText = false;
+  }
+
+  refresh() {
+    const criteria = {
+      ...this.defaultCriteria
+    };
+    this.state = 'loading';
+
+    this._imageService.getImages(criteria)
+      .subscribe(images => {
+        this.images = images;
+        this.state = 'data';
+      }, error => {
+        this.state = 'error';
+      })
   }
 
   clearText() {

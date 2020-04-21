@@ -1,12 +1,13 @@
+@import './utils';
+@import './variables';
+
 :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
     cursor: pointer;
     transition: border .3s  ease-in;
 
     &.selected {
-        border: 1px solid white;
+        border: 1px solid $white;
     }
 }
 

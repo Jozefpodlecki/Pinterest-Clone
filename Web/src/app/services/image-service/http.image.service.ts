@@ -1,17 +1,17 @@
 import { Observable, from, of } from 'rxjs';
 import ImageService from '.';
 import { HttpClient } from '@angular/common/http';
-import { AddComment } from '../models/AddComment';
-import { AddImageToCollection } from '../models/AddImageToCollection';
-import { AddImage } from '../models/AddImage';
-import { BaseEnvironment } from 'src/environments/BaseEnvironment';
-import { Image } from 'src/app/models/Image';
-import { Category } from '../models/Category';
-import { ImageSearchCriteria } from '../models/ImageSearchCriteria';
-import { CommentSearchCriteria } from '../models/CommentSearchCriteria';
-import { CategorySearchCriteria } from '../models/CategorySearchCriteria';
+import { AddComment } from '@models/AddComment';
+import { AddImageToCollection } from '@models/AddImageToCollection';
+import { AddImage } from '@models/AddImage';
+import { BaseEnvironment } from '@environments/BaseEnvironment';
+import { Image } from '@models/Image';
+import { Category } from '@models/Category';
+import { ImageSearchCriteria } from '@models/ImageSearchCriteria';
+import { CommentSearchCriteria } from '@models/CommentSearchCriteria';
+import { CategorySearchCriteria } from '@models/CategorySearchCriteria';
 import { Injectable } from '@angular/core';
-import { ReportReason } from '../models/ReportReason';
+import { ReportReason } from '@models/ReportReason';
 
 @Injectable()
 export class HttpImageService implements ImageService {

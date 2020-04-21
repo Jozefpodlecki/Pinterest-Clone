@@ -51,11 +51,22 @@ namespace Pinterest_Clone.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddImage([FromBody]AddImage image)
+        public async Task<IActionResult> AddImage([FromBody]AddImage model)
         {
-            await _imageService.AddImage(image.CategoryId, image.File.FileName, image.File.OpenReadStream());
+            await _imageService.AddImage(model.CategoryId, model.File.FileName, model.File.OpenReadStream());
 
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddImage1([FromBody]AddImage model)
+        {
+            var imageId = await _imageService.AddImage(model.ImageId, model.CategoryId, model.File.FileName, model.File.ContentType, model.Offset, model.Data);
+
+            return Ok(new
+            {
+                ImageId = imageId
+            });
         }
 
         [HttpPost("search")]

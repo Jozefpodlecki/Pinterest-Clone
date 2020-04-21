@@ -1,16 +1,15 @@
 import { Component, Output, EventEmitter, Inject } from '@angular/core';
-import ImageService from 'src/app/image-service';
-import { Category } from 'src/app/models/Category';
+import ImageService from '@services/image-service';
+import { Category } from '@models/Category';
 import { trigger, transition, style, query, stagger, animate, keyframes } from '@angular/animations';
-import { trackById } from 'src/utils';
+import { trackById } from '@utils';
 import { BaseModalComponent } from '../base/base-modal.component';
 import { DOCUMENT } from '@angular/common';
 
-
 @Component({
-  selector: 'image-add-modal',
-  templateUrl: './image-add-modal.component.html',
-  styleUrls: ['./image-add-modal.component.scss'],
+  selector: 'add-image-modal',
+  templateUrl: './add-image-modal.component.html',
+  styleUrls: ['./add-image-modal.component.scss'],
   animations: [
     trigger('categoriesAnimation', [
       transition('* => *', [

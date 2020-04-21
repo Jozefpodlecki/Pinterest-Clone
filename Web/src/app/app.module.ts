@@ -23,19 +23,19 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { UserCardComponent } from './user/user-card/user-card.component';
 import { ZoomImageModalComponent } from './modals/zoom-image/zoom-image-modal.component';
 import { LoginModalComponent } from './modals/login/login-modal.component';
-import { ReportImageModalComponent } from '.modals/report-image/report-image-modal.component';
-import { RemoveImageModalComponent } from '.modals/remove-image/remove-image-modal.component';
-import { ShareImageModalComponent } from '.modals/share-image/share-image-modal.component';
-import { AddImageModalComponent } from '.modals/add-image/add-image-modal.component';
+import { ReportImageModalComponent } from './modals/report-image/report-image-modal.component';
+import { RemoveImageModalComponent } from './modals/remove-image/remove-image-modal.component';
+import { ShareImageModalComponent } from './modals/share-image/share-image-modal.component';
+import { AddImageModalComponent } from './modals/add-image/add-image-modal.component';
 import { AddCommentFormComponent } from './image/add-comment-form/add-comment-form.component';
 import { CommentComponent } from './image/comment/comment.component';
 import { TokenInterceptor } from './token-interceptor/token.interceptor';
 import { LoaderComponent } from './loader/loader.component';
-import { HttpImageService } from 'src/app/image-service/http.image.service';
-import ImageService from 'src/app/image-service';
-import UserService from 'src/app/user-service';
-import { HttpUserService } from 'src/app/user-service/http.user.service';
-import { CategoryComponent } from '.modals/add-image/category/category.component';
+import { HttpImageService } from '@services/image-service/http.image.service';
+import ImageService from '@services/image-service';
+import UserService from '@services/user-service';
+import { HttpUserService } from '@services/user-service/http.user.service';
+import { CategoryComponent } from './modals/add-image/category/category.component';
 import { SelectControlComponent } from './modals/report-image/select-control/select-control.component';
 
 @NgModule({

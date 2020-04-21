@@ -1,32 +1,49 @@
-<div class="dashboard__header">
-    <div class="dashboard__searchWrapper">
-        <div class="dashboard__searchBox" [class.dashboard__searchBox--active]="isSearchActive">
-            <input
-                [(ngModel)]="search"
-                (ngModelChange)="onSearch($event)"
-                (focus)="onFocus()"
-                (blur)="onBlur()"
-                class="dashboard__searchInput"
-                type="text"
-                [placeholder]="searchPlaceholder"/>
+<div [ngSwitch]="state">
+    <div *ngSwitchCase="'data'">
+        <div class="dashboard__header">
+            <div class="dashboard__searchWrapper">
+                <div class="dashboard__searchBox" [class.dashboard__searchBox--active]="isSearchActive">
+                    <input
+                        [(ngModel)]="search"
+                        (ngModelChange)="onSearch($event)"
+                        (focus)="onFocus()"
+                        (blur)="onBlur()"
+                        class="dashboard__searchInput"
+                        type="text"
+                        [placeholder]="searchPlaceholder"/>
+                </div>
+                <div (click)="clearText()" class="dashboard__clearIcon" [class.dashboard__clearIcon--active]="canClearText">
+                    <fa-icon [icon]="faTimes" size="2x"></fa-icon>
+                </div>
+            </div>
         </div>
-        <div (click)="clearText()" class="dashboard__clearIcon" [class.dashboard__clearIcon--active]="canClearText">
-            <fa-icon [icon]="faTimes" size="2x"></fa-icon>
+        <div class="dashboard__content" [@imagesAnimation]="images.length">
+            <card
+                (zoomIn)="zoomIn($event)"
+                (addImage)="addImage()"
+                (reportImage)="reportImage()"
+                (shareImage)="shareImage()"
+                *ngFor="let image of images; trackBy: trackById"
+                [background]="image.link">
+            </card>
+        </div>
+    </div>
+    <div *ngSwitchCase="'loading'">
+        <loader></loader>
+    </div>
+    <div *ngSwitchCase="'error'" class="error">
+        <div class="error__header">An error occurred when fetching images</div>
+        <div class="error__snippet">Please try again</div>
+        <div>
+            <span class="error__action" (click)="refresh()">
+                <fa-icon [icon]="faSyncAlt" size="2x"></fa-icon>
+            </span>
         </div>
     </div>
 </div>
-<div class="dashboard__content" [@imagesAnimation]="images.length">
-    <card
-        (zoomIn)="zoomIn($event)"
-        (addImage)="addImage()"
-        (reportImage)="reportImage()"
-        (shareImage)="shareImage()"
-        *ngFor="let image of images; trackBy: trackById"
-        [background]="image.link">
-    </card>
-</div>
-<image-report-modal [isActive]="isReportModalActive" (closeModal)="isReportModalActive = false"></image-report-modal>
-<image-share-modal [isActive]="isShareModalActive" (closeModal)="isShareModalActive = false"></image-share-modal>
-<image-add-modal [modalData]="modalData" [isActive]="isAddModalActive" (closeModal)="isAddModalActive = false"></image-add-modal>
+
+<report-image-modal [isActive]="isReportModalActive" (closeModal)="isReportModalActive = false"></report-image-modal>
+<share-image-modal [isActive]="isShareModalActive" (closeModal)="isShareModalActive = false"></share-image-modal>
+<add-image-modal [modalData]="modalData" [isActive]="isAddModalActive" (closeModal)="isAddModalActive = false"></add-image-modal>
 <login-modal [isActive]="isLoginModalActive" (closeModal)="isLoginModalActive = false"></login-modal>
 <zoom-image-modal [modalData]="modalData" [isActive]="isZoomInModalActive" (closeModal)="isZoomInModalActive = false"></zoom-image-modal>

@@ -1,15 +1,8 @@
-//@include '~/utils';
-
-@mixin button {
-    border: none;
-    background: none;
-    padding: 0;
-}
+@import './utils';
+@import './variables';
 
 :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
     transition: filter .3s ease-in;
 }
 
@@ -27,9 +20,7 @@
 
     &__actions {
         flex: 1 1 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-center;
         margin-top: 2rem;
     }
 
@@ -47,7 +38,7 @@
     }
 
     &__footer {
-        color: white;
+        color: $white;
         margin: 0 2rem 2rem 2rem;
         display: flex;
         justify-content: space-between;
@@ -56,7 +47,7 @@
     &__action {
         cursor: pointer;
         margin: 0 .5rem;
-        color: white;
+        color: $white;
     }
 
     &__button {

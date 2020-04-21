@@ -2,7 +2,7 @@ import { Component, SimpleChanges, Inject } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import UserService from 'src/app/user-service';
+import UserService from '@services/user-service';
 import { BaseModalComponent } from '../base/base-modal.component';
 import { DOCUMENT } from '@angular/common';
 

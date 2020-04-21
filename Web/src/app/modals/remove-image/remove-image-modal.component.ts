@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { BaseModalComponent } from '../base/base-modal.component';
 import { DOCUMENT } from '@angular/common';
-import { computeBackgroundStyle } from 'src/utils';
+import { computeBackgroundStyle } from '@utils';
 
 @Component({
   selector: 'remove-image-modal',

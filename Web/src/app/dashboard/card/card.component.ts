@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit, ElementRef, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { faShareAlt, faUserPlus, faSearchPlus, faPlus, faFlag } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import { createClipPath } from 'src/utils';
+import { createClipPath, computeBackgroundStyle } from '@utils';
 
 @Component({
   selector: 'card',
@@ -58,7 +58,7 @@ export class CardComponent implements OnInit {
       ...this.backgroundStyle,
       width: `${width}px`,
       height: `${height}px`,
-      background: `url(${this.background}) center center / cover no-repeat`
+      background: computeBackgroundStyle(this.background)
     }
   }
 }

@@ -1,0 +1,36 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin button {
+    color: $white;
+    background: transparent;
+    border: 1px solid $white;
+    transition: color .3s ease-in,
+        border .3s ease-in;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+
+@mixin modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+    z-index: -1;
+    opacity: 0;
+    
+    background: transparentize($black, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.is-active {
+        z-index: 1;
+        opacity: 1;
+    }
+}

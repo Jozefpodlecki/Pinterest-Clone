@@ -1,7 +1,9 @@
-$white: white;
+@import './utils';
+@import './variables';
 
 :host {
     width: 100%;
+    @include flex-center;
 }
 
 .dashboard {
@@ -66,11 +68,27 @@ $white: white;
         }
 
         &::selection {
-            background: transparentize(black, 0.5);
+            background: transparentize($black, 0.5);
         }
 
         &::placeholder {
             color: transparentize($white, 0.2);
         }
+    }
+}
+
+.error {
+    text-align: center;
+    
+    &__header {
+        font-size: 2rem;
+    }
+
+    &__header , &__snippet {
+        margin-bottom: 1rem;
+    }
+
+    &__action {
+        cursor: pointer;
     }
 }

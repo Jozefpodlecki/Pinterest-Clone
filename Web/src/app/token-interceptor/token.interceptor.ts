@@ -7,7 +7,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import UserService from 'src/app/user-service'
+import UserService from '@services/user-service'
 import { Router } from '@angular/router';
 
 @Injectable()

@@ -1,10 +1,9 @@
-$white: white;
+@import './utils';
+@import './variables';
 
 :host {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-self: center;
+    @include flex-center;
 }
 
 .create-pin {
@@ -18,7 +17,7 @@ $white: white;
         width: 300px;
         height: 300px;
         padding: 1rem;
-        border: 1px dashed black;
+        border: 1px dashed $black;
     }
 
     &__field {

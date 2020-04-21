@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import ImageService from 'src/app/image-service';
-import UserService from 'src/app/user-service';
+import ImageService from '@services/image-service';
+import UserService from '@services/user-service';
 
 @Component({
   selector: 'user',

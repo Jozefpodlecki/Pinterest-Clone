@@ -3,7 +3,7 @@ import { faFacebook, faQuora, faTwitter, faLinkedin, IconDefinition } from '@for
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DOCUMENT } from '@angular/common';
 import { BaseModalComponent } from '../base/base-modal.component';
-import { trackByName } from 'src/utils';
+import { trackByName } from '@utils';
 
 interface Action {
   name: string;

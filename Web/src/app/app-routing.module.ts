@@ -5,7 +5,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { ImageComponent } from './image/image.component';
-import { CreatePinComponent } from './create-pin/create-pin.component';
+import { CreatePinComponent } from './profile/create-pin/create-pin.component';
 import { AuthGuard } from './auth-guard/auth.guard';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';

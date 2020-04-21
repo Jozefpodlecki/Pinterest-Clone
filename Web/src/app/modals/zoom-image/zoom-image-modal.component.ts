@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DOCUMENT } from '@angular/common';
 import { BaseModalComponent } from '../base/base-modal.component';
-import { computeBackgroundStyle } from 'src/utils';
+import { computeBackgroundStyle } from '@utils';
 
 @Component({
   selector: 'zoom-image-modal',

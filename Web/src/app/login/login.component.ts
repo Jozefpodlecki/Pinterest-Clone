@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import UserService from 'src/app/user-service';
+import UserService from '@services/user-service';
 
 @Component({
   selector: 'login',
@@ -15,13 +15,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   usernameOrEmail: FormControl;
   password: FormControl;
-  loading: boolean;
   serverError: boolean;
+  state: string;
 
   constructor(
     private _router: Router,
     private _userService: UserService) {
-    this.loading = false;
     this.serverError = false;
     this.usernameOrEmail = new FormControl('', [Validators.required]);
     this.password = new FormControl('', [Validators.required]);
@@ -30,9 +29,11 @@ export class LoginComponent implements OnInit {
       usernameOrEmail: this.usernameOrEmail,
       password: this.password,
     });
+    this.state = 'loading';
   }
 
   ngOnInit(): void {
+    this.state = 'login';
   }
 
   signInWithGithub() {
@@ -40,13 +41,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loading = true;
+    this.state = 'loading';
     const credentials = this.loginForm.value;
+
     this._userService.login(credentials)
       .subscribe(_ => {
         this._router.navigate(['/'])
       }, error => {
-        this.loading = false;
+        this.state = 'login';
         this.serverError = true;
         console.log(error);
 

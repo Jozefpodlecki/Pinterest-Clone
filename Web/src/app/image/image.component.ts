@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { faPaperPlane, faArrowLeft, faTrash, faFlag } from '@fortawesome/free-solid-svg-icons';
-import ImageService from 'src/app/image-service';
+import ImageService from '@services/image-service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 

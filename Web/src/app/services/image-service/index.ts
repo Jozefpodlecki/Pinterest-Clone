@@ -1,13 +1,13 @@
 import { Observable } from 'rxjs';
-import { AddComment } from '../models/AddComment';
-import { AddImageToCollection } from '../models/AddImageToCollection';
-import { AddImage } from '../models/AddImage';
-import { Category } from '../models/Category';
-import { Image } from '../models/Image';
-import { ImageSearchCriteria } from '../models/ImageSearchCriteria';
-import { CommentSearchCriteria } from '../models/CommentSearchCriteria';
-import { CategorySearchCriteria } from '../models/CategorySearchCriteria';
-import { ReportReason } from '../models/ReportReason';
+import { AddComment } from '@models/AddComment';
+import { AddImageToCollection } from '@models/AddImageToCollection';
+import { AddImage } from '@models/AddImage';
+import { Category } from '@models/Category';
+import { Image } from '@models/Image';
+import { ImageSearchCriteria } from '@models/ImageSearchCriteria';
+import { CommentSearchCriteria } from '@models/CommentSearchCriteria';
+import { CategorySearchCriteria } from '@models/CategorySearchCriteria';
+import { ReportReason } from '@models/ReportReason';
 
 export default abstract class ImageService {
     abstract getReportReasons(): Observable<ReportReason[]>

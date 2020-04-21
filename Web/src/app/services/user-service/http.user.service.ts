@@ -3,9 +3,9 @@ import { Observable, from, Subject, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GenericCredentials } from '../models/GenericCredentials';
-import { BaseEnvironment } from 'src/environments/BaseEnvironment';
-import { Profile } from '../models/profile';
+import { GenericCredentials } from '@models/GenericCredentials';
+import { BaseEnvironment } from '@environments/BaseEnvironment';
+import { Profile } from '@models/profile';
 import { Injectable } from '@angular/core';
 
 @Injectable() 

@@ -21,10 +21,45 @@ export class AppComponent {
   backgroundStyle: object;
 
   constructor() {
+    const link = `images/app-background.jpg`;
     this.backgroundStyle = {
-      background: `url(images/app-background.jpg)`,
       filter: `blur(5px) brightness(.5)`
-    }
+    };
+
+    this.getImage(link)
+      .then(pr => {
+        this.backgroundStyle = {
+          ...this.backgroundStyle,
+          background: `url(${link}) `
+        }
+      })
+      .catch(pr => {
+        this.backgroundStyle = {
+          ...this.backgroundStyle,
+          background: 'black',
+        }
+      })
+  }
+
+  getImage(link: string) {
+    return new Promise((resolve, reject) => {
+      const image = new Image()
+      image.src = link;
+  
+      const onLoad = () => {
+        image.removeEventListener("load", onLoad)
+        resolve();
+      }
+
+      image.addEventListener("load", onLoad)
+      
+      const onError = () => {
+        image.removeEventListener("error", onError)
+        reject();
+      }
+      
+      image.addEventListener("error", onError)
+    })
   }
 
   prepareRoute(outlet: RouterOutlet) {

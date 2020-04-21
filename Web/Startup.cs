@@ -84,6 +84,7 @@ namespace Pinterest_Clone
             services.AddTransient<StorageService>();
             services.AddTransient<TimeService>();
             services.AddTransient<UserContext>();
+            services.AddSingleton<CacheService>();
             services.AddTransient<DataSeeder>();
             
             services.AddTransient<IFileProvider>((service) =>

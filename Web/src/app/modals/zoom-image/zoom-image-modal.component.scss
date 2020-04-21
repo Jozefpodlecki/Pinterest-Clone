@@ -1,26 +1,10 @@
-$white: white;
-$black: #000;
-
+@import './utils';
+@import './variables';
 
 :host {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    background: transparentize($black, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity .3s ease-in;
-
-    &.is-active {
-        z-index: 1;
-        opacity: 1;
-    }
+    @include modal;
 }
+
 
 .zoom-image-modal {
     &__header {

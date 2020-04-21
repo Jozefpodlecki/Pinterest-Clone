@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { trackById } from 'src/utils';
+import { trackById } from '@utils';
 
 @Component({
   selector: 'select-control',
