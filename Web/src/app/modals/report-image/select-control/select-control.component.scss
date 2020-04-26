@@ -1,0 +1,108 @@
+@import './utils';
+@import './variables';
+
+:host {
+    display: block;
+}
+
+.option {
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: color .3s ease-in;
+    color: $white;
+
+    &:hover {
+        color: $gray;
+    }
+
+    &--selected {
+        color: $gray;
+        pointer-events: none;
+        cursor: none;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        margin-bottom: .5rem;
+    }
+
+    &__current {
+        flex: 1 1 auto;
+    }
+
+    &__currentValueWrapper {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        transition: color .3s ease-in,
+            border .3s ease-in;
+
+        &--toggle , &:hover {
+            color: $gray;
+            border-color: $gray;
+        }
+    }
+
+    &__arrow {
+        width: 20px;
+        border-style: solid;
+        border-color: $white;
+        border-width: 0 5px 5px 0;
+        padding: 8px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transition: transform .3s ease-in;
+
+        &--toggle {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &__currentValueWrapper {
+        background: $black;
+        width: 450px;
+    }
+
+    &__firstWrapper {
+        width: 450px;
+        position: absolute;
+        background: $black;
+        overflow-y: scroll;
+        height: 0px;
+        transition: height .3s ease-in,
+            opacity .3s ease-in;
+        opacity: 0;
+        margin-top: -1rem;
+        
+        @mixin test () {
+            &::-webkit-scrollbar {
+                width: 6px;
+            }    
+        }
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $white;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: $gray;
+        }
+
+        &--active {
+            height: 300px;
+            opacity: 1;
+        }
+    }
+
+    &__wrapper {
+        padding: 0 0 1rem 1rem;
+    }
+}

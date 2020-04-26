@@ -4,7 +4,7 @@
     </div>
     <div class="content">
         <div class="content__close">
-            <fa-icon (click)="closeModal.emit()" class="content__closeIcon" [icon]="faTimes" size="x"></fa-icon>
+            <fa-icon (click)="closeModal()" class="content__closeIcon" [icon]="faTimes" size="x"></fa-icon>
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="field">

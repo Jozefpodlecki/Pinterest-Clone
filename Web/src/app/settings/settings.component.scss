@@ -1,3 +1,114 @@
+@import './utils';
+@import './variables';
+
 :host {
-    width: 600px;
+    width: 100%;
+    @include flex-center;
+}
+
+.settings {
+
+    &__content {
+        flex: 0 0 400px;
+    }
+
+    &__form {
+        border: 1px solid $white;
+        padding: 1rem;
+    }
+
+    &__header {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    &__fileContainer {
+        border: 1px dashed $white;
+        width: 300px;
+        height: 300px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__fileUploadIcon {
+        margin-bottom: 1rem;
+    }
+
+    &__filePreview {
+        position: absolute;
+    }
+
+    &__field {
+        margin-top: 1rem;
+    }
+
+    &__action {
+        cursor: pointer;
+        margin-left: 1rem;
+
+        &--disabled {
+            cursor: none;
+            color: $gray;
+            pointer-events: none;
+        }
+    }
+
+    &__textareaWrapper {
+        height: 50px;
+        color: $lightgray;
+    }
+
+    &__inputWrapper {
+        height: 40px;
+        color: $lightgray;
+    }
+
+    &__inputFile {
+        display: none;
+    }
+
+    &__inputLabel {
+        margin: .5rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    &__fieldHeader {
+        display: flex;
+        margin: 0 0 .5rem .5rem;
+    }
+
+    &__fileFieldHeader {
+        margin: 0 0 1rem .5rem;
+    }
+
+    &__textarea {
+        resize: vertical;
+    }
+
+    &__input, &__textarea, &__submit {
+        @include baseInput;
+        font-family: 'Quicksand', Helvetica, sans-serif;
+        color: $white;
+        height: 100%;
+
+        &:focus {
+            outline: 1px solid $white
+        }
+    }
+
+    &__submitWrapper {
+        padding: 0 1rem;
+    }
+
+    &__submit {
+        cursor: pointer;
+        border: 1px solid $white;
+    }
 }

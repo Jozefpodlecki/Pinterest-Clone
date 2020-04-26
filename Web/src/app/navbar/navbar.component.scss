@@ -23,6 +23,12 @@
         border: none;
         background: none;
         padding: 0;
+        @include flex-center;
+    }
+
+    &__link {
+        @include flex-center;
+        text-decoration: none;
     }
 
     &__action, &__label, &__image {
@@ -31,6 +37,10 @@
 
     &__action {
         cursor: pointer;
+    }
+
+    &__actionText {
+        margin-right: .5rem;
     }
 
     &__image {

@@ -21,9 +21,6 @@ export class ZoomImageModalComponent extends BaseModalComponent {
     this.backgroundStyle = {};
   }
 
-  ngOnInit(): void {
-  }
-
   onChanges(modalData: any): void {
     
     const { background } = modalData;

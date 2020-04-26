@@ -1,2 +1,17 @@
-<div>{{currentValue}}</div>
-<div *ngFor="let option of options; trackBy: trackById"></div>
+<div (click)="toggleDropdown()" class="option__currentValueWrapper" [class.option__currentValueWrapper--toggle]="isPopupOpen">
+    <div class="option__current">
+        <div class="option__title">{{currentValue.title}}</div>
+        <div class="option__description">{{currentValue.description}}</div>
+    </div>
+    <div>
+        <div class="option__arrow" [class.option__arrow--toggle]="isPopupOpen"></div>
+    </div>
+</div>
+<div class="option__firstWrapper" [class.option__firstWrapper--active]="isPopupOpen">
+    <div class="option__wrapper">
+        <div (click)="selectOption(option)" class="option" [class.option--selected]="option.id === currentValue?.id" *ngFor="let option of options; trackBy: trackById">
+            <div class="option__title">{{option.title}}</div>
+            <div class="option__description">{{option.description}}</div>
+        </div>
+    </div>
+</div>

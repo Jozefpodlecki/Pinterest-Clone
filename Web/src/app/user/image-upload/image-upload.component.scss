@@ -1,0 +1,26 @@
+@import './utils';
+@import './variables';
+
+.content {
+    width: 300px;
+    height: 300px;
+    border: 1px dashed $white;
+    cursor: pointer;
+    @include flex-center;
+
+    &__wrapper {
+        text-align: center;
+    }
+
+    &__icon {
+        margin-bottom: 1rem;
+    }
+
+    &__preview {
+        position: absolute;
+    }
+
+    &__fileInput {
+        display: none;
+    }
+}

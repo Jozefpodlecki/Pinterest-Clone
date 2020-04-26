@@ -1,0 +1,10 @@
+@import './utils';
+
+:host {
+    display: block;
+    @include flex-center;
+}
+
+.text {
+    position: absolute;
+}

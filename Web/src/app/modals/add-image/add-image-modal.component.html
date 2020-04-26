@@ -1,15 +1,22 @@
 <div class="content">
-    <div class="content__header">Which Category?</div>
-    <div class="content__categories" [@categoriesAnimation]="categories.length">
-        <category
-            [selected]="category.id === categoryId"
-            (click)="onCategorySelect(category.id)"
-            [category]="category"
-            *ngFor="let category of categories; trackBy: trackById">
-        </category>
+    <div class="modal__header">
+        <span (click)="closeModal()" class="modal__close">
+            <fa-icon class="modal__closeIcon" [icon]="faTimes" size="2x"></fa-icon>
+        </span>
     </div>
-    <div class="content__search">
-        <input [(ngModel)]="value" (ngModelChange)="categorySearch($event)" class="content__input"  type="text" placeholder="Search for category..."/>
+    <div class="modal__content">
+        <div class="content__header">Which Category?</div>
+        <div class="content__categories" [@categoriesAnimation]="categories.length">
+            <category
+                [selected]="category.id === categoryId"
+                (click)="onCategorySelect(category.id)"
+                [category]="category"
+                *ngFor="let category of categories; trackBy: trackById">
+            </category>
+        </div>
+        <div class="content__search">
+            <input [(ngModel)]="value" (ngModelChange)="categorySearch($event)" class="content__input"  type="text" placeholder="Search for category..."/>
+        </div>
+        <button class="content__button" [disabled]="isInvalid()" (click)="saveImage()">Save</button>
     </div>
-    <button class="content__button" [disabled]="isInvalid()" (click)="saveImage()">Save</button>
 </div>

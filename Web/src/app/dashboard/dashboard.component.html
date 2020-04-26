@@ -1,5 +1,5 @@
-<div [ngSwitch]="state">
-    <div *ngSwitchCase="'data'">
+<div class="dashboard__wrapper" [ngSwitch]="state">
+    <ng-container *ngSwitchCase="'data'">
         <div class="dashboard__header">
             <div class="dashboard__searchWrapper">
                 <div class="dashboard__searchBox" [class.dashboard__searchBox--active]="isSearchActive">
@@ -18,16 +18,15 @@
             </div>
         </div>
         <div class="dashboard__content" [@imagesAnimation]="images.length">
-            <card
-                (zoomIn)="zoomIn($event)"
-                (addImage)="addImage()"
-                (reportImage)="reportImage()"
-                (shareImage)="shareImage()"
+            <card   
+                [routerLink]="'/image/' + image.id"
+                (action)="action($event, image)"
+                [canDelete]="false"
                 *ngFor="let image of images; trackBy: trackById"
                 [background]="image.link">
             </card>
         </div>
-    </div>
+    </ng-container>
     <div *ngSwitchCase="'loading'">
         <loader></loader>
     </div>
@@ -42,8 +41,8 @@
     </div>
 </div>
 
-<report-image-modal [isActive]="isReportModalActive" (closeModal)="isReportModalActive = false"></report-image-modal>
-<share-image-modal [isActive]="isShareModalActive" (closeModal)="isShareModalActive = false"></share-image-modal>
-<add-image-modal [modalData]="modalData" [isActive]="isAddModalActive" (closeModal)="isAddModalActive = false"></add-image-modal>
-<login-modal [isActive]="isLoginModalActive" (closeModal)="isLoginModalActive = false"></login-modal>
-<zoom-image-modal [modalData]="modalData" [isActive]="isZoomInModalActive" (closeModal)="isZoomInModalActive = false"></zoom-image-modal>
+<report-image-modal [(isActive)]="isReportModalActive"></report-image-modal>
+<share-image-modal [(isActive)]="isShareModalActive"></share-image-modal>
+<add-image-modal [modalData]="modalData" [(isActive)]="isAddModalActive"></add-image-modal>
+<login-modal [(isActive)]="isLoginModalActive"></login-modal>
+<zoom-image-modal [modalData]="modalData" [(isActive)]="isZoomInModalActive"></zoom-image-modal>

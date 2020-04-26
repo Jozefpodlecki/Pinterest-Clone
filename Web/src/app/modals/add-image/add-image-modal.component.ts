@@ -5,6 +5,7 @@ import { trigger, transition, style, query, stagger, animate, keyframes } from '
 import { trackById } from '@utils';
 import { BaseModalComponent } from '../base/base-modal.component';
 import { DOCUMENT } from '@angular/common';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'add-image-modal',
@@ -47,6 +48,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AddImageModalComponent extends BaseModalComponent {
   trackById = trackById;
+  faTimes = faTimes;
   
   categories: Category[];
   categoryId: number;

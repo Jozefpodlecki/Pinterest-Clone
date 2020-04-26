@@ -1,13 +1,9 @@
 ﻿using DAL.Entity;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pinterest_Clone.Services
 {
-    public class CacheService
+    public class CacheService : ICacheService
     {
         private IMemoryCache _memoryCache;
 

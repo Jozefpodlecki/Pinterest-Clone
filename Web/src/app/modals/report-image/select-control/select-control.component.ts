@@ -1,41 +1,74 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { trackById } from '@utils';
+import { ReportReason } from '@models/ReportReason';
 
 @Component({
   selector: 'select-control',
   templateUrl: './select-control.component.html',
-  styleUrls: ['./select-control.component.scss']
+  styleUrls: ['./select-control.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SelectControlComponent),
+      multi: true
+    }
+  ]
 })
-export class SelectControlComponent implements OnInit, ControlValueAccessor  {
+export class SelectControlComponent implements ControlValueAccessor  {
   trackById = trackById;
   
-  @Input() defaultValue: any;
-  @Input() currentValue: string;
-  @Input("values") options: any[];
+  @Input() defaultValue: ReportReason;
+  currentValue: ReportReason;
+  @Input("values") options: ReportReason[];
+  isPopupOpen: boolean;
 
   constructor() {
     this.options = [];
-    this.currentValue = '';
-    this.defaultValue = null;
+    this.isPopupOpen = false;
+    this.defaultValue = {
+      id: -1,
+      title: '',
+      description: ''
+    };
+    this.currentValue = this.defaultValue;
+  }
+
+  onChange(value: any) {
+
+  }
+
+  onTouch() {
+
   }
 
   writeValue(option: any): void {
+    if(!option) {
+      this.currentValue = this.defaultValue;
+      return;
+    }
     
   }
 
-  registerOnChange(fn: any): void {
-    
+  registerOnChange(callback: () => void): void {
+    this.onChange = callback;
   }
   
-  registerOnTouched(fn: any): void {
-    
+  registerOnTouched(callback: () => void): void {
+    this.onTouch = callback;
   }
   
   setDisabledState?(isDisabled: boolean): void {
     
   }
 
-  ngOnInit(): void {
+  selectOption(option: any) {
+    this.currentValue = option;
+    this.toggleDropdown();
+    this.onChange(this.currentValue);
+  }
+
+  toggleDropdown() {
+    this.isPopupOpen = !this.isPopupOpen;
   }
 }

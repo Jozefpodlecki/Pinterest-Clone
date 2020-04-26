@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { faTrash, faFlag } from '@fortawesome/free-solid-svg-icons';
+import { computeBackgroundStyle } from '@utils';
 
 @Component({
   selector: 'comment',
@@ -10,10 +11,14 @@ export class CommentComponent implements OnInit {
   faTrash = faTrash;
   faFlag = faFlag;
 
+  @Input() canDelete: boolean;
   @Input() comment: any;
+  @Output() action: EventEmitter<string>;
 
   constructor() {
     this.comment = {};
+    this.canDelete = false;
+    this.action = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -23,7 +28,7 @@ export class CommentComponent implements OnInit {
     const avatar = comment.avatar;
 
     return {
-      background: `url(${avatar}) center center / cover`
+      background: computeBackgroundStyle(avatar)
     }
   }
 

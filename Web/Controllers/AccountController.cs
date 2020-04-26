@@ -19,12 +19,12 @@ namespace Pinterest_Clone.Controllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
 
         public AccountController(
             SignInManager<User> signInManager,
             UserManager<User> userManager,
-            AuthService authService)
+            IAuthService authService)
         {
             _signInManager = signInManager;
             _userManager = userManager;

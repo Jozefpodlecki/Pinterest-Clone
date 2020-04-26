@@ -9,6 +9,10 @@ class LocalEnvironment extends BaseEnvironment {
   get isProduction(): boolean {
     return false;
   }
+
+  get useFakeServices(): boolean {
+    return true;
+  }
 }
 
 export default new LocalEnvironment()

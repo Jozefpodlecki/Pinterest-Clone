@@ -16,23 +16,6 @@ namespace Pinterest_Clone.Services
             _fileProvider = fileProvider;
         }
 
-        public async Task<Stream> GetFile(string fileName)
-        {
-            var fileInfo = _fileProvider.GetFileInfo(fileName);
-
-            if(fileInfo.Exists)
-            {
-                return null;
-            }
-
-            return fileInfo.CreateReadStream();
-        }
-
-        public async Task UploadFile(Stream stream, string fileName)
-        {
-            var fileStream = File.OpenWrite(fileName);
-            await stream.CopyToAsync(fileStream);
-            fileStream.Close();
-        }
+     
     }
 }

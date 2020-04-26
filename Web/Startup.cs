@@ -42,13 +42,6 @@ namespace Pinterest_Clone
         {
             return async context =>
             {
-                var fullName = context.Identity.FindFirst("urn:github:name").Value;
-                var email = context.Identity.FindFirst(ClaimTypes.Email).Value;
-
-                //context.Success();
-                //context.
-                //Todo: Add logic here to save info into database
-                //context.
                 await Task.FromResult(true);
             };
         }
@@ -59,11 +52,21 @@ namespace Pinterest_Clone
             services.AddControllersWithViews();
             
             var connectionString = Configuration.GetConnectionString(Constants.DefaultConnection);
-
-            services.AddEntityFrameworkSqlServer()
-                .AddDbContext<AppDBContext>((options) =>
-                    options.UseSqlServer(connectionString)
-                );
+            
+            if(HostingEnvironment.EnvironmentName == "Test")
+            {
+                services.AddEntityFrameworkSqlServer()
+                    .AddDbContext<AppDBContext>((options) =>
+                        options.UseInMemoryDatabase(databaseName: nameof(AppDBContext))
+                    );
+            }
+            else
+            {
+                services.AddEntityFrameworkSqlServer()
+                    .AddDbContext<AppDBContext>((options) =>
+                        options.UseSqlServer(connectionString)
+                    );
+            }
             
             services.AddIdentity<User, Role>(options =>
             {
@@ -79,12 +82,12 @@ namespace Pinterest_Clone
 
             services.Configure<JwtConfiguration>(Configuration.GetSection(Constants.JwtConfiguration));
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<AuthService>();
-            services.AddTransient<ImageService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<ImageService, ImageService>();
             services.AddTransient<StorageService>();
-            services.AddTransient<TimeService>();
-            services.AddTransient<UserContext>();
-            services.AddSingleton<CacheService>();
+            services.AddTransient<ITimeService, TimeService>();
+            services.AddTransient<IUserContext, UserContext>();
+            services.AddSingleton<ICacheService, CacheService>();
             services.AddTransient<DataSeeder>();
             
             services.AddTransient<IFileProvider>((service) =>

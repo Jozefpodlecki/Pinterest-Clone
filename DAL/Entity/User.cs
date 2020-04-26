@@ -7,6 +7,8 @@ namespace DAL.Entity
 {
     public class User : IdentityUser<int>
     {
+        public string Background { get; set; }
+
         public string DisplayName { get; set; }
 
         public string Avatar { get; set; }        

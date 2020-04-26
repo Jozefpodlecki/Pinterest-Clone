@@ -5,11 +5,22 @@
     @include modal;
 }
 
+.modal {
+    &__header {
+        text-align: right;
+    }
+
+    &__close {
+        cursor: pointer;
+    }
+}
+
 .content {
+    flex: 0 1 500px;
+    text-align: center;
 
     &__header {
-        font-size: 2rem;
-        text-align: center;
+        font-size: 2rem;    
         margin-bottom: 1rem;
     }
 
@@ -18,9 +29,11 @@
     }
 
     &__categories {
+        width: 100%;
+        height: 300px;
         display: grid;
-        grid-template-columns: 100px 100px 100px;
-        grid-template-rows: 100px 100px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         gap: 1rem;
     }
 
@@ -40,17 +53,13 @@
     }
 
     &__button {
-        color: $white;
-        background: transparent;
-        border: 1px solid $white;
-        padding: .5rem 1rem;
+        @include button;
         transition: color .3s ease-in,
             border-color .3s ease-in;
-        cursor: pointer;
 
         &:disabled {
-            color: gray;
-            border-color: gray;
+            color: $gray;
+            border-color: $gray;
             cursor: none;
         }
     }

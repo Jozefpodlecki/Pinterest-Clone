@@ -1,10 +1,10 @@
-<div class="zoom-image-modal__content">
-    <div class="zoom-image-modal__header">
-        <span (click)="closeModal.emit()" class="zoom-image-modal__close">
-            <fa-icon class="content__closeIcon" [icon]="faTimes" size="x"></fa-icon>
+<div class="modal__content">
+    <div class="modal__header">
+        <span (click)="closeModal()" class="modal__close">
+            <fa-icon class="modal__closeIcon" [icon]="faTimes" size="2x"></fa-icon>
         </span>
     </div>
-    <div class="zoom-image-modal__image" [ngStyle]="backgroundStyle">
-
+    <div class="modal__imageWrapper">
+        <div class="modal__image" [ngStyle]="backgroundStyle"></div>
     </div>
 </div>

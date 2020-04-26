@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { trigger, transition, animate, style } from '@angular/animations';
+import { trigger, transition, animate, style, query } from '@angular/animations';
 
 @Component({
   selector: 'app',
@@ -8,11 +8,22 @@ import { trigger, transition, animate, style } from '@angular/animations';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger('routeAnimations', [
-      transition('* => *', [
-        animate('.1s', style({
-          
-        }))
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('.2s', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('.2s', style({ opacity: 0 }))
       ])
+      // transition('* <=> *', [
+      //   query(':enter', style({
+      //     opacity: 1
+      //   }), { optional: true }),
+      //   query(':leave', style({
+      //     position: 'absolute',
+      //     opacity: 0
+      //   }), { optional: true })
+      // ])
     ])
   ]
 })
@@ -39,6 +50,14 @@ export class AppComponent {
           background: 'black',
         }
       })
+  }
+  
+  animationStart(event: Event) {
+    
+  }
+
+  animationEnd(event: Event) {
+    
   }
 
   getImage(link: string) {

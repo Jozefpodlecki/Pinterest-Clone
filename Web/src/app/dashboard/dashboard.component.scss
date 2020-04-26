@@ -7,13 +7,19 @@
 }
 
 .dashboard {
+
+    &__wrapper {
+        width: 100%;
+        padding: 1rem;
+    }
+    
     &__content {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-auto-rows: 300px;
         grid-row-gap: .5rem;
         grid-column-gap: .5rem;
-        padding: 1rem;
+        
     }
 
     &__header {

@@ -3,6 +3,9 @@ import { faPaperPlane, faArrowLeft, faTrash, faFlag } from '@fortawesome/free-so
 import ImageService from '@services/image-service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ImageComment } from '@models/ImageComment';
+import { trackById } from '@utils';
+import { CommentSearchCriteria } from '@models/CommentSearchCriteria';
 
 @Component({
   selector: 'image',
@@ -10,16 +13,25 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./image.component.scss']
 })
 export class ImageComponent implements OnInit, AfterViewInit {
+  trackById = trackById;
   faArrowLeft = faArrowLeft;
 
   link: string;
-  comments: Comment[];
+  comments: ImageComment[];
   backgroundStyle: object;
+  defaultCriteria: CommentSearchCriteria;
+  criteria: CommentSearchCriteria;
   title: string;
   description: string;
   width: number;
   height: number;
   imageId: number;
+  pageSize: number;
+  isDeleteCommentModalActive: boolean;
+  isReportCommentModalActive: boolean;
+  modalData: any;
+  isImageLoading: boolean;
+  commentsState: string;
 
   @ViewChild('imageWrapper') imageWrapper: ElementRef<HTMLDivElement>;
 
@@ -30,22 +42,56 @@ export class ImageComponent implements OnInit, AfterViewInit {
     this.title = '';
     this.description = '';
     this.comments = [];
+    this.pageSize = 5;
+    this.defaultCriteria = {
+      imageId: this.imageId,
+      page: 0,
+      pageSize: this.pageSize
+    }
+    this.criteria = {
+      ...this.defaultCriteria
+    }
+    this.isDeleteCommentModalActive = false;
+    this.isReportCommentModalActive = false;
+    this.modalData = null;
+    this.isImageLoading = true;
+    this.commentsState = 'loading';
     this._route.paramMap.subscribe(params => {
       this.imageId = Number(params.get('id'));
+      this.defaultCriteria.imageId = this.imageId;
+      this.criteria = {
+        ...this.defaultCriteria
+      }
+    })
+  }
+
+  loadComments() {
+    this.commentsState = 'loading';
+    this.criteria = {
+      ...this.criteria,
+      pageSize: this.criteria.pageSize + this.pageSize
+    }
+
+    this._imageService.getComments(this.criteria)
+    .subscribe(comments => {
+      this.commentsState = 'complete';
+      this.comments = comments;
     })
   }
 
   ngAfterViewInit(): void {
     
-    const { width, height } = this.imageWrapper.nativeElement.getBoundingClientRect();
-    this.width = width;
-    this.height = height;
-    this.backgroundStyle = {
-      ...this.backgroundStyle,
-      width: `${this.width}px`,
-      height: `${this.height}px`
-    }
-
+    setTimeout(() => {
+      const { width, height } = this.imageWrapper.nativeElement.getBoundingClientRect();
+      this.width = width;
+      this.height = height;
+      this.backgroundStyle = {
+        ...this.backgroundStyle,
+        width: `${this.width}px`,
+        height: `${this.height}px`
+      }
+      this.isImageLoading = false;
+    }, 1500)
   }
 
   ngOnInit(): void {
@@ -62,18 +108,53 @@ export class ImageComponent implements OnInit, AfterViewInit {
         }, 0)
       })
 
-      this._imageService.getComments({
-          imageId: this.imageId,
-          page: 0,
-          pageSize: 5
-      })
-      .subscribe(comments => {
-        this.comments = comments;
-      })
+      this._imageService.getComments(this.criteria)
+        .subscribe(comments => {
+          this.comments = comments;
+          this.commentsState = 'hasMoreComments';
+        })
   }
 
-  onSubmit() {
+  commentAction(action: string, comment: ImageComment) {
+    switch(action) {
+      case "delete":
+        this.modalData = {
+          id: comment.id,
+        }
+        this.isDeleteCommentModalActive = true;
+        break;
+      case "report":
+        this.modalData = {
+          id: comment.id,
+        }
+        this.isReportCommentModalActive = true;
+        break;
+    }
+  }
+
+  reportComment() {
+
+  }
+
+  removeComment() {
     
+  }
+
+  sendComment(data: any) {
+    data = {
+      ...data,
+      imageId: this.imageId
+    }
+
+    this._imageService
+      .addComment(data)
+      .subscribe(_ => {
+        this._imageService.getComments(this.criteria)
+          .subscribe(comments => {
+            this.commentsState = 'hasMoreComments';
+            this.comments = comments;
+          })
+      })
   }
 
 }

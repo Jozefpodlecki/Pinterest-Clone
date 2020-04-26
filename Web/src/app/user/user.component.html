@@ -5,8 +5,13 @@
     <div class="user__item" *ngFor="let item of collection">
         <div class="user__category">{{item.category}}</div>
         <div class="user__images">
-            <!-- <div class="user__image"  [ngStyle]="computeStyle(image.link)"></div> -->
-            <user-card [background]="image.link" *ngFor="let image of item.images"></user-card>
+            <card
+                (action)="action($event, image)"
+                [canDelete]="canDelete"
+                [canAdd]="canAdd"
+                [background]="image.link"
+                *ngFor="let image of item.images">
+            </card>
         </div>
     </div>
 </div>

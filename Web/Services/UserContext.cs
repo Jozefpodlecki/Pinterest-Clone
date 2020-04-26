@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace Pinterest_Clone.Services
 {
-    public class UserContext
+    public class UserContext : IUserContext
     {
         private readonly HttpContext _httpContext;
 

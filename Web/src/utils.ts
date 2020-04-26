@@ -1,3 +1,5 @@
+import ImageService from '@services/image-service';
+
 interface Identity {
   id: number;
 }
@@ -40,3 +42,50 @@ export const createClipPath = () => {
 
     return result;
   }
+
+export const sendFile = async (imageService: ImageService, image: File, formData: any) => {
+    const chunkSize = 1024 * 64;
+    const chunksAmount = Math.ceil(image.size / chunkSize);
+    let chunkIndex = 0;
+    let indexStart = 0;
+    let indexEnd = indexStart + chunkSize;
+    let imageId = null;
+
+    if(chunksAmount === 1) {
+      indexEnd = chunkSize;
+    }
+      
+    do {
+      
+      const blob = image.slice(indexStart, indexEnd);
+      const buffer = await (blob as any).arrayBuffer();
+      const array = new Uint8Array(buffer);
+
+      const result = await imageService.addImage({
+        ...formData,
+        fileType: image.type,
+        fileName: image.name,
+        imageId,
+        data: array,
+        offset: indexStart
+      }).toPromise();
+      
+      this.progressValue = chunkIndex / (chunksAmount - 1);
+
+      await new Promise((resolve, reject) => setTimeout(resolve, 100));
+
+      imageId = result.imageId;
+
+      indexStart = indexEnd;
+
+      if(indexStart + chunkSize > image.size) {
+        indexEnd = image.size;
+      }
+      else {
+        indexEnd = indexStart + chunkSize;
+      }
+      
+      chunkIndex = chunkIndex + 1;
+
+    } while(chunksAmount > chunkIndex);
+}

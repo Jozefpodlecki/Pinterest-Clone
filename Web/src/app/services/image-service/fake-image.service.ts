@@ -1,4 +1,20 @@
-const sampleImages = [
+import ImageService from '.';
+import { Injectable } from '@angular/core';
+import { Observable, of, throwError } from 'rxjs';
+import { AddComment } from '@models/AddComment';
+import { ReportReason } from '@models/ReportReason';
+import { AddImageToCollection } from '@models/AddImageToCollection';
+import { AddImage } from '@models/AddImage';
+import { BaseEnvironment } from '@environments/BaseEnvironment';
+import { Image } from '@models/Image';
+import { Category } from '@models/Category';
+import { ImageSearchCriteria } from '@models/ImageSearchCriteria';
+import { CommentSearchCriteria } from '@models/CommentSearchCriteria';
+import { CategorySearchCriteria } from '@models/CategorySearchCriteria';
+import { ImageComment } from '@models/ImageComment';
+import reasons from './reasons.json'
+
+const imageLinks = [
     "https://i.pinimg.com/originals/61/45/f8/6145f8f9f2ad74793b8152929c2bfd2a.jpg",
     "https://i.pinimg.com/236x/b6/98/e5/b698e580e873c6b34c3832c97a4dad24.jpg",
     "https://i.pinimg.com/236x/65/b1/49/65b149e192024fe025faf84bed18d1a1.jpg",
@@ -16,10 +32,10 @@ const sampleImages = [
       categoryId: 1,
       images: [
         {
-          link: "https://i.pinimg.com/236x/65/b1/49/65b149e192024fe025faf84bed18d1a1.jpg"
+          link: "https://cdn.britannica.com/s:800x450,c:crop/66/195966-138-F9E7A828/facts-turtles.jpg"
         },
         {
-          link: "https://i.pinimg.com/236x/8d/66/d6/8d66d68654ff371d191e8de62a647706.jpg"
+          link: "https://upload.wikimedia.org/wikipedia/commons/7/72/Igel.JPG"
         }
       ],
     },
@@ -46,11 +62,13 @@ const sampleImages = [
     }
   ]
   
-  const data = sampleImages.map((link, id) => ({
+  const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan nisl sit amet risus imperdiet sagittis. Sed consectetur dolor quis molestie imperdiet. Maecenas et nulla aliquet, tempus mauris quis, tempus erat. Cras ut mauris libero. Suspendisse et arcu ut sem vestibulum porttitor sed id nulla. Aenean eu sapien et orci feugiat vestibulum at in nibh. Vestibulum ante tellus, aliquam ac ante ac, laoreet feugiat ligula.";
+
+  const images = imageLinks.map((link, id) => ({
     id,
     link,
-    title: '',
-    body: ''
+    title: loremIpsum.substring(0, 50),
+    description: loremIpsum.substring(0, 255)
   }))
   
   const categories = [
@@ -80,3 +98,88 @@ const sampleImages = [
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor diam magna, sit amet tincidunt elit dictum ut. Pellentesque ullamcorper orci a urna consequat, nec vestibulum mi aliquam. Integer at augue nec libero laoreet pulvinar eu eget metus.`
     }));
   
+
+@Injectable()
+export class FakeImageService implements ImageService {
+
+  comments: ImageComment[];
+
+  constructor() {
+    this.comments = comments;
+  }
+
+  reportImage(data: ReportReason): Observable<any> {
+    return throwError('');
+    return of(null);
+  }
+
+  getReportReasons(): Observable<ReportReason[]> {
+    return of(reasons);
+  }
+
+  getImages(criteria: ImageSearchCriteria): Observable<Image[]> {
+    return of(images);
+  }
+
+  getImage(id: number): Observable<Image> {
+    return of(images.find(image => image.id === id));
+  }
+
+  getComments(criteria: CommentSearchCriteria): Observable<ImageComment[]> {
+
+    const currentIndex = criteria.page * criteria.pageSize;
+    const nextIndex = currentIndex + criteria.pageSize;
+
+    const comments = this.comments.slice(currentIndex, nextIndex);
+    console.log(criteria, comments)
+    return of(comments);
+  }
+
+  addComment(data: AddComment): Observable<any> {
+    return of([]);
+  }
+
+  removeComment(id: number): Observable<any> {
+    return of([]);
+  }
+
+  blobs = [];
+  lastImageId = null;
+  lastFileType = null;
+
+  addImage(model: AddImage): Observable<any> {
+    
+    this.lastFileType = model.fileType;
+
+    if(!model.imageId) {
+      this.lastImageId = Math.floor(Math.random() * 100);
+    }
+
+    const { data, offset } = model;
+    this.blobs.push({
+      data,
+      offset
+    });
+
+    return of({
+      imageId: this.lastImageId
+    });
+  }
+
+  addImageToCollection(data: AddImageToCollection): Observable<any> {
+    return of([]);
+  }
+
+  removeImage(id: number): Observable<any> {
+    return of([]);
+  }
+
+  getCategories(criteria: CategorySearchCriteria): Observable<Category[]> {
+    return of([]);
+  }
+
+  getUserCollection(userId: number): Observable<any[]> {
+    return of(collection);
+  }
+
+}

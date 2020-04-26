@@ -1,5 +1,5 @@
 import UserService from '.';
-import { Observable, from, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, from, Subject, BehaviorSubject, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,15 +7,17 @@ import { GenericCredentials } from '@models/GenericCredentials';
 import { BaseEnvironment } from '@environments/BaseEnvironment';
 import { Profile } from '@models/profile';
 import { Injectable } from '@angular/core';
+import { AuthContextService } from '@services/auth-context/auth-context.service';
+import { UpdateProfile } from '@models/UpdateProfile';
 
 @Injectable() 
 export class HttpUserService implements UserService {
 
-  token: string;
-  baseUrl: string;
-  isLoggedIn: BehaviorSubject<boolean>;
+  private token: string;
+  private baseUrl: string;
+  profile: Profile;
 
-  localStorageKey = "token";
+  private localStorageKey = "token";
 
   clearTokenFromLocalStorage = () => {
     return localStorage.removeItem(this.localStorageKey);
@@ -33,16 +35,26 @@ export class HttpUserService implements UserService {
     private _http: HttpClient,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _environment: BaseEnvironment
+    private _environment: BaseEnvironment,
+    private _authContextService: AuthContextService
     ) {
     this.baseUrl = this._environment.baseUrl;
     this.token = this.getTokenFromLocalStorage();
-    this.isLoggedIn = this.checkIfLoggedIn();
-    
+    this.profile = null;
+
     this._route.queryParams.subscribe(({token}) => {
       if(token) {
         this.setTokenToLocalStorage(token);
         this._router.navigate(['/']);
+      }
+    })
+
+    this._authContextService.isLoggedIn.subscribe(value => {
+      if(value) {
+        this.getProfile()
+          .subscribe(profile => {
+            this.profile = profile;
+          })
       }
     })
   }
@@ -68,7 +80,7 @@ export class HttpUserService implements UserService {
   signOut() {
     this.clearTokenFromLocalStorage();
     this.token = null;
-    this.isLoggedIn.next(false);
+    this._authContextService.isLoggedIn.next(false);
   }
 
   login(credentials: GenericCredentials) {
@@ -80,7 +92,7 @@ export class HttpUserService implements UserService {
           tap(token => {
             this.setTokenToLocalStorage(token);
             this.token = token;
-            this.isLoggedIn.next(true);
+            this._authContextService.isLoggedIn.next(true);
           })
         )
   }
@@ -89,7 +101,15 @@ export class HttpUserService implements UserService {
     return this._http.get<any>(`${this.baseUrl}api/image/user`)
   }
 
+  updateProfile(data: UpdateProfile): Observable<any> {
+    return of(null);
+  }
+
   getProfile() {
+    if(this.profile) {
+      return of(this.profile);
+    }
+
     return this._http.get<Profile>(`${this.baseUrl}api/account/user`)
   }
 }

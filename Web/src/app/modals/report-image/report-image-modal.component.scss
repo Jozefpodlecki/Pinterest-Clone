@@ -5,6 +5,52 @@
     @include modal;
 }
 
-.submit {
-    @include button;
+.error {
+    width: 450px;
+    padding: 1rem;
+    background: $white;
+
+    &__text {
+        color: $red;
+    }
+}
+
+.sent {
+    text-align: center;
+
+    &__header {
+        font-size: 2rem;
+    }
+}
+
+.modal {
+    flex: 0 1 500px;
+
+    &__close {
+        cursor: pointer;
+    }
+
+    &__header {
+        text-align: right;
+    }
+
+    &__contentHeader {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    &__submitWrapper {
+        text-align: right;
+    }
+
+    &__submit {
+        margin-top: 1rem;
+        @include button;
+
+        &:disabled {
+            color: $gray;
+            border-color: $gray;
+            cursor: none;
+        }
+    }
 }

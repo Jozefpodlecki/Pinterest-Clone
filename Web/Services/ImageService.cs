@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace Pinterest_Clone.Services
 {
-    public class ImageService
+    public class ImageService : IImageService
     {
         private readonly AppDBContext _dbContext;
-        private readonly UserContext _userContext;
-        private readonly CacheService _cacheService;
+        private readonly IUserContext _userContext;
+        private readonly ICacheService _cacheService;
 
         public ImageService(
             AppDBContext dbContext,
-            UserContext userContext,
-            CacheService cacheService
+            IUserContext userContext,
+            ICacheService cacheService
             )
         {
             _dbContext = dbContext;
@@ -60,24 +60,20 @@ namespace Pinterest_Clone.Services
             return await _dbContext.Images.FindAsync(id);
         }
 
-        public async Task AddImage(int categoryId, string title, string description, string link, Stream stream)
-        {
-            var userId = _userContext.GetUserId();
-
-            var image = new Image
-            {
-                Link = link,
-                AuthorId = userId,
-            };
-
-            await _dbContext.Images.AddAsync(image);
-        }
-
         public string CreateId()
         {
             return Guid.NewGuid().ToString().Replace("-", "").ToLower();
         }
-        public async Task<int> AddImage(int? imageId, int categoryId, string title, string description, string fileName, string contentType, int offset, byte[] data)
+        public async Task<int> AddImage(
+            int? imageId,
+            int categoryId,
+            string title,
+            string description,
+            string fileName,
+            string contentType,
+            int offset,
+            byte[] data
+            )
         {
             Image image = null;
             Stream stream = null;
@@ -116,6 +112,16 @@ namespace Pinterest_Clone.Services
             };
 
             _dbContext.Images.Add(image);
+
+            await _dbContext.SaveChangesAsync();
+
+            var userImage = new UserImage
+            {
+                ImageId = image.Id,
+                CategoryId = categoryId
+            };
+
+            _dbContext.UserImages.Add(userImage);
 
             await _dbContext.SaveChangesAsync();
 

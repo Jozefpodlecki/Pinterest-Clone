@@ -20,15 +20,6 @@ export class RemoveImageModalComponent extends BaseModalComponent {
     this.backgroundStyle = {};
   }
 
-  ngOnInit(): void {
-  }
-
-  click(value: boolean) {
-    if(!value) {
-      this.closeModal.emit();
-    }
-  }
-
   onChanges(modalData: any): void {
     
     this.imageId = modalData.imageId;
@@ -36,6 +27,10 @@ export class RemoveImageModalComponent extends BaseModalComponent {
     this.backgroundStyle = {
       background: computeBackgroundStyle(modalData.background)
     }
+  }
+
+  confirmDelete() {
+    
   }
 
 }

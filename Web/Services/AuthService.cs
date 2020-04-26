@@ -2,25 +2,22 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Pinterest_Clone.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         private readonly IConfiguration _configuration;
         private readonly Encoding _encoding;
-        private readonly TimeService _timeService;
+        private readonly ITimeService _timeService;
 
         public AuthService(
             IConfiguration configuration,
             Encoding encoding,
-            TimeService timeService)
+            ITimeService timeService)
         {
             _configuration = configuration;
             _encoding = encoding;
@@ -30,7 +27,7 @@ namespace Pinterest_Clone.Services
         public string GenerateJwt(User user)
         {
             var key = _configuration["Jwt:Key"];
-            var keyBytes = Encoding.UTF8.GetBytes(key);
+            var keyBytes = _encoding.GetBytes(key);
             var securityKey = new SymmetricSecurityKey(keyBytes);
             var securityAlgorithm = SecurityAlgorithms.HmacSha256;
             var credentials = new SigningCredentials(securityKey, securityAlgorithm);
@@ -39,7 +36,6 @@ namespace Pinterest_Clone.Services
             {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.UserName),
-                //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())

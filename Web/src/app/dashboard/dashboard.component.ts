@@ -6,6 +6,9 @@ import UserService from '@services/user-service';
 import { trigger, transition, query, style, stagger, animate, keyframes } from '@angular/animations';
 import { trackById } from 'utils';
 import { DOCUMENT } from '@angular/common';
+import { ImageSearchCriteria } from '@models/ImageSearchCriteria';
+import { AuthContextService } from '@services/auth-context/auth-context.service';
+import { CardAction } from '@models/CardAction';
 
 @Component({
   selector: 'dashboard',
@@ -20,16 +23,16 @@ import { DOCUMENT } from '@angular/common';
           optional: true 
         }),
         query(':enter',
-          stagger('.2s', [
-            animate('.2s', style({
+          stagger('.1s', [
+            animate('.1s', style({
               opacity: 1
             }))
           ]), {
             optional: true 
         }),
         query(':leave',
-          stagger('.2s', [
-            animate('.2s', keyframes([
+          stagger('.1s', [
+            animate('.1s', keyframes([
               style({
                 opacity: 1,
                 offset: 0,
@@ -63,14 +66,15 @@ export class DashboardComponent implements OnInit {
   isShareModalActive: boolean;
   modalData: object;
   images: Image[];
-  defaultCriteria: { value: string; page: number; pageSize: number; };
+  defaultCriteria: ImageSearchCriteria;
   serverError: boolean;
   state: string;
 
   constructor(
     private _userService: UserService,
     private _imageService: ImageService,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
+    private _authContextService: AuthContextService
     ) {
     this.images = [];
     this.isReportModalActive = false;
@@ -112,9 +116,9 @@ export class DashboardComponent implements OnInit {
     const scrollY = window.scrollY;
     const totalHeight = this._document.body.offsetHeight;
     const currentHeight = clientHeight + scrollY;
-    console.log(clientHeight, scrollY, totalHeight);
+
   if (currentHeight >= totalHeight) {
-      console.log('end of page');
+      
     }
   }
 
@@ -126,6 +130,10 @@ export class DashboardComponent implements OnInit {
   onBlur() {
     this.searchPlaceholder = this.defaultPlaceholder;
     this.isSearchActive = false;
+  }
+
+  goToImage(image: Image) {
+    console.log(image);
   }
 
   onSearch(value: string) {
@@ -166,29 +174,28 @@ export class DashboardComponent implements OnInit {
     this.canClearText = false;
   }
 
-  zoomIn(data) {
-    this.isZoomInModalActive = true;
-    this.modalData = {
-      background: data
+  action(action: CardAction, image: Image) {
+    if(action !== CardAction.ZoomIn && !this._authContextService.isLoggedIn.value) {
+      this.isLoginModalActive = true;
+      return
     }
-  }
 
-  addImage() {
-
-    if(this._userService.isLoggedIn.value) {
-      //this.isAddModalActive = true;
-      //return;
+    switch(action) {
+      case CardAction.Add:
+        this.isAddModalActive = true;  
+      break;
+      case CardAction.ZoomIn:
+        this.modalData = {
+          background: image.link
+        }
+        this.isZoomInModalActive = true;
+      break;
+      case CardAction.Report:
+        this.isReportModalActive = true;
+      break;
+      case CardAction.Share:
+        this.isShareModalActive = true;
+      break;
     }
-    this.isAddModalActive = true;
-    //this.isLoginModalActive = true;
-    
-  }
-
-  shareImage() {
-    this.isShareModalActive = true;
-  }
-
-  reportImage() {
-    this.isReportModalActive = true;
   }
 }

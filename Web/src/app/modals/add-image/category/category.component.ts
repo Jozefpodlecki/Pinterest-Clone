@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ElementRef, HostListener, HostBinding } from '@angular/core';
 import { Category } from '@models/Category';
+import { computeBackgroundStyle } from '@utils';
 
 @Component({
   selector: 'category',
@@ -41,7 +42,7 @@ export class CategoryComponent implements OnInit {
       ...this.backgroundStyle,
       width: `${width}px`,
       height: `${height}px`,
-      background: `url(${this.category.link}) center center / cover no-repeat`
+      background: computeBackgroundStyle(this.category.link)
     }
   }
 

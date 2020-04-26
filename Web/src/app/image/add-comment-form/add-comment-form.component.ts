@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,8 +12,10 @@ export class AddCommentFormComponent implements OnInit {
 
   commentForm: FormGroup;
   text: FormControl;
+  @Output() sendComment: EventEmitter<any>;
 
   constructor() {
+    this.sendComment = new EventEmitter();
     this.text = new FormControl('', [Validators.required]);
 
     this.commentForm = new FormGroup({
@@ -22,9 +24,5 @@ export class AddCommentFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-  
-  onSubmit(): void {
-    
   }
 }

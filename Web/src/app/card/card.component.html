@@ -1,0 +1,28 @@
+<div class="card__background" [ngStyle]="backgroundStyle"></div>
+<div class="card__content" [class.card__content--active]="isActive">
+    <div class="card__actions">
+        <button class="card__button card__action" (click)="invokeAction($event, CardAction.ZoomIn)">
+            <fa-icon [icon]="faSearchPlus" size="2x"></fa-icon>
+        </button>
+        <button *ngIf="canAdd" class="card__button card__action" (click)="invokeAction($event, CardAction.Add)">
+            <fa-icon [icon]="faPlus" size="2x" ></fa-icon>
+        </button>
+        <button class="card__button card__action" (click)="invokeAction($event, CardAction.Share)">
+            <fa-icon [icon]="faShareAlt" size="2x"></fa-icon>
+        </button>
+    </div>
+    <div class="card__footer">
+        <div class="card__footerLeft">
+            <fa-icon [icon]="faUserPlus"></fa-icon>
+            <span class="card__userCount">{{usersCount}}</span>
+        </div>
+        <div>
+            <button *ngIf="canDelete" class="card__button card__action" (click)="invokeAction($event, CardAction.Remove)">
+                <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+            <button class="card__button card__action" (click)="invokeAction($event, CardAction.Report)">
+                <fa-icon [icon]="faFlag"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

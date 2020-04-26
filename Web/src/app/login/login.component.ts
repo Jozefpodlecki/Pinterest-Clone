@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       }, error => {
         this.state = 'login';
         this.serverError = true;
-        console.log(error);
 
         setTimeout(() => {
           this.serverError = false;

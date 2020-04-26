@@ -9,4 +9,5 @@ export abstract class BaseEnvironment {
     
     abstract get isProduction(): boolean;
     baseUrl: string;
+    abstract get useFakeServices(): boolean;
 }

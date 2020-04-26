@@ -8,12 +8,14 @@ import { ImageSearchCriteria } from '@models/ImageSearchCriteria';
 import { CommentSearchCriteria } from '@models/CommentSearchCriteria';
 import { CategorySearchCriteria } from '@models/CategorySearchCriteria';
 import { ReportReason } from '@models/ReportReason';
+import { ImageComment } from '@models/ImageComment';
 
 export default abstract class ImageService {
+    abstract reportImage(data: ReportReason): Observable<any>
     abstract getReportReasons(): Observable<ReportReason[]>
     abstract getImages(criteria: ImageSearchCriteria): Observable<Image[]>
     abstract getImage(id: number): Observable<Image>
-    abstract getComments(criteria: CommentSearchCriteria): Observable<Comment[]>
+    abstract getComments(criteria: CommentSearchCriteria): Observable<ImageComment[]>
     abstract addComment(data: AddComment): Observable<any>
     abstract removeComment(id: number): Observable<any>
     abstract addImage(data: AddImage): Observable<any>

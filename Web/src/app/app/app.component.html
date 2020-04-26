@@ -1,6 +1,9 @@
 <navbar></navbar>
 <div class="background" [ngStyle]="backgroundStyle"></div>
-<div class="content" [@routeAnimations]="prepareRoute(outlet)">
+<div class="content"
+    [@routeAnimations]="prepareRoute(outlet)"
+    (@routeAnimations.done)="animationEnd($event)"
+    (@routeAnimations.start)="animationStart($event)">
     <router-outlet #outlet="outlet"></router-outlet>
 </div>
 <footer></footer>
