@@ -1,0 +1,63 @@
+<div class="dashboard__wrapper" [ngSwitch]="state">
+    <ng-container *ngSwitchCase="'data'">
+        <div class="dashboard__header">
+            <div class="dashboard__searchWrapper">
+                <div
+                    class="dashboard__searchBox"
+                    [class.dashboard__searchBox--active]="isSearchActive"
+                >
+                    <input
+                        [(ngModel)]="search"
+                        (ngModelChange)="onSearch($event)"
+                        (focus)="onFocus()"
+                        (blur)="onBlur()"
+                        class="dashboard__searchInput"
+                        type="text"
+                        [placeholder]="searchPlaceholder"
+                    />
+                </div>
+                <div
+                    (click)="clearText()"
+                    class="dashboard__clearIcon"
+                    [class.dashboard__clearIcon--active]="canClearText"
+                >
+                    <fa-icon [icon]="faTimes" size="2x"></fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard__content" [@imagesAnimation]="images.length">
+            <card
+                [routerLink]="'/image/' + image.id"
+                (action)="action($event, image)"
+                [canDelete]="false"
+                *ngFor="let image of images; trackBy: trackById"
+                [background]="image.link"
+            >
+            </card>
+        </div>
+    </ng-container>
+    <div *ngSwitchCase="'loading'">
+        <loader></loader>
+    </div>
+    <div *ngSwitchCase="'error'" class="error">
+        <div class="error__header">An error occurred when fetching images</div>
+        <div class="error__snippet">Please try again</div>
+        <div>
+            <span class="error__action" (click)="refresh()">
+                <fa-icon [icon]="faSyncAlt" size="2x"></fa-icon>
+            </span>
+        </div>
+    </div>
+</div>
+
+<report-image-modal [(isActive)]="isReportModalActive"></report-image-modal>
+<share-image-modal [(isActive)]="isShareModalActive"></share-image-modal>
+<add-image-modal
+    [modalData]="modalData"
+    [(isActive)]="isAddModalActive"
+></add-image-modal>
+<login-modal [(isActive)]="isLoginModalActive"></login-modal>
+<zoom-image-modal
+    [modalData]="modalData"
+    [(isActive)]="isZoomInModalActive"
+></zoom-image-modal>

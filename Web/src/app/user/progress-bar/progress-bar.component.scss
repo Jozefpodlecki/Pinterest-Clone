@@ -1,0 +1,21 @@
+@import "./variables";
+
+:host {
+    display: block;
+    background: $gray;
+
+    & .bar {
+        animation: 1s ease-in 0s infinite alternate both running changeColor;
+        transition: width 0.3s ease-in;
+        height: 100%;
+    }
+}
+
+@keyframes changeColor {
+    0% {
+        background: lighten($black, 75%);
+    }
+    100% {
+        background: lighten($black, 95%);
+    }
+}

@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "Spam",
+        "description": "Misleading or repetitive posts"
+    },
+    {
+        "id": 2,
+        "title": "Nudity or pornography",
+        "description": "Sexually explicit content"
+    },
+    {
+        "id": 3,
+        "title": "Self-harm",
+        "description": "Eating disorders, cutting, suicide"
+    },
+    {
+        "id": 4,
+        "title": "Misinformation",
+        "description": "Health misinformation, conspiracies, manipulated images"
+    },
+    {
+        "id": 5,
+        "title": "Hateful activities",
+        "description": "Prejudice, stereotypes, white supremacy"
+    },
+    {
+        "id": 6,
+        "title": "Dangerous goods",
+        "description": "Drugs, weapons, regulated products"
+    },
+    {
+        "id": 7,
+        "title": "Harassment or privacy violations",
+        "description": "Insults, threats, personally identifiable info"
+    },
+    {
+        "id": 8,
+        "title": "Graphic violence",
+        "description": "Violent images or promotion of violence"
+    },
+    {
+        "id": 9,
+        "title": "My intellectual property",
+        "description": "Copyright or trademark infringement"
+    }
+]

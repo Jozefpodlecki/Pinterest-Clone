@@ -1,0 +1,10 @@
+@import "./utils";
+@import "./variables";
+
+:host {
+    @include modal;
+}
+
+.modal {
+    flex: 0 1 500px;
+}

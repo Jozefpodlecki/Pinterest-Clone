@@ -1,0 +1,30 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "src",
+        "outDir": "./dist",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2018", "dom"],
+        "paths": {
+            "@models/*": ["app/models/*"],
+            "@environments/*": ["environments/*"],
+            "@services/*": ["app/services/*"],
+            "@utils": ["utils.ts"]
+        }
+    },
+    "angularCompilerOptions": {
+        "src/typings.d.tseCheck": true,
+        "strictInjectionParameters": true
+    }
+}

@@ -1,0 +1,61 @@
+<div class="image__header">
+    <a routerLink="/">
+        <fa-icon
+            class="image__backIcon"
+            [icon]="faArrowLeft"
+            size="2x"
+        ></fa-icon>
+    </a>
+</div>
+<div class="image__content">
+    <div #imageWrapper class="image__left">
+        <div class="image__loader" *ngIf="isImageLoading; else elseImage">
+            <loader></loader>
+        </div>
+        <ng-template #elseImage>
+            <div class="image__background" [ngStyle]="backgroundStyle"></div>
+            <div class="image__actions"></div>
+        </ng-template>
+    </div>
+    <div class="image__right">
+        <div class="image__details">
+            <div class="image__title">{{ title }}</div>
+            <div class="image__description">{{ description }}</div>
+        </div>
+        <div class="image__comments">
+            <div class="image__commentsWrapper">
+                <comment
+                    (action)="commentAction($event, comment)"
+                    [comment]="comment"
+                    class="comment"
+                    *ngFor="let comment of comments; trackBy: trackById"
+                >
+                </comment>
+                <div [ngSwitch]="commentsState">
+                    <ng-container *ngSwitchCase="'loading'">
+                        <loader></loader>
+                    </ng-container>
+                    <div
+                        *ngSwitchCase="'hasMoreComments'"
+                        class="image__commentsMoreWrapper"
+                    >
+                        <span
+                            class="image__commentsMoreText"
+                            (click)="loadComments()"
+                            >Load later comments...</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <add-comment-form
+            (sendComment)="sendComment($event)"
+        ></add-comment-form>
+    </div>
+</div>
+<report-comment-modal
+    [modalData]="modalData"
+    [isActive]="isReportCommentModalActive"
+    (closeModal)="isReportCommentModalActive = false"
+>
+</report-comment-modal>

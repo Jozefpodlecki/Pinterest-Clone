@@ -1,0 +1,46 @@
+@import "./utils";
+@import "./variables";
+
+:host {
+    display: block;
+    padding: 1rem;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    border: 1px solid $white;
+    padding: 0.5rem;
+
+    &__avatar {
+        flex: 0 0 50px;
+        height: 50px;
+        margin-right: 1rem;
+    }
+
+    &__content {
+        margin: 0.5rem 0;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__headerLeft {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+
+    &__footer {
+        display: flex;
+    }
+
+    &__action {
+        margin: 0 0.5rem;
+        cursor: pointer;
+    }
+}

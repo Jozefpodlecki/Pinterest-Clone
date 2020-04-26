@@ -1,0 +1,11 @@
+<form [formGroup]="reportCommentForm" (ngSubmit)="onSubmit()">
+    <div class="form__sendButtonWrapper">
+        <badge-control
+            formControlName="reason"
+            [values]="reasons"
+        ></badge-control>
+        <button class="form__sendButton" type="submit">
+            Send
+        </button>
+    </div>
+</form>

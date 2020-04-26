@@ -1,0 +1,33 @@
+<div class="content">
+    <div class="icon">
+        <fa-icon [icon]="faShieldAlt" size="10x"></fa-icon>
+    </div>
+    <div class="text">You don't have access to the page</div>
+    <div>
+        <div class="form">
+            <form [formGroup]="requestAccessForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <textarea
+                        class="textarea"
+                        formControlName="text"
+                        placeholder="Tell us why would you like to access it..."
+                    >
+                    </textarea>
+                    <div *ngIf="text.invalid && (text.dirty || text.touched)">
+                        <div *ngIf="text.errors.minlength">
+                            Could you elaborate more on it?
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input
+                        [disabled]="requestAccessForm.invalid"
+                        class="submit"
+                        type="submit"
+                        value="Submit"
+                    />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+@import "./utils";
+@import "./variables";
+
+:host {
+    @include modal;
+}
+
+.modal {
+    &__header {
+        text-align: right;
+    }
+
+    &__close {
+        cursor: pointer;
+    }
+
+    &__content {
+        flex: 0 1 500px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__imageWrapper {
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+    }
+}

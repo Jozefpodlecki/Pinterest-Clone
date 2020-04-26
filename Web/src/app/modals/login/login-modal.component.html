@@ -1,0 +1,44 @@
+<div class="content__wrapper">
+    <div class="content__header">
+        Sign in to add image to your collection!
+    </div>
+    <div class="content">
+        <div class="content__close">
+            <fa-icon
+                (click)="closeModal()"
+                class="content__closeIcon"
+                [icon]="faTimes"
+                size="x"
+            ></fa-icon>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="field">
+                <label for="usernameOrEmail">Username/Email</label>
+                <input
+                    class="field__input"
+                    id="usernameOrEmail"
+                    type="text"
+                    placeholder="Enter username or email..."
+                />
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input
+                    class="field__input"
+                    id="password"
+                    type="password"
+                    placeholder="Enter password..."
+                />
+            </div>
+            <div class="field field__submitWrapper">
+                <input class="field__submit" type="submit" value="Sign In" />
+            </div>
+            <div class="field field__socialWrapper">
+                <div class="field__social" (click)="signInWithGithub()">
+                    <span class="field__socialText">Sign in with Github</span>
+                    <fa-icon [icon]="faGithub" size="2x"></fa-icon>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

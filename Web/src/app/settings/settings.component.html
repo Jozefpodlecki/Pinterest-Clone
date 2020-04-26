@@ -1,0 +1,151 @@
+<div class="settings__content">
+    <div class="settings__header">Settings</div>
+    <form class="settings__form" [formGroup]="settingsForm">
+        <div>
+            <div class="settings__fieldHeader settings__fileFieldHeader">
+                <div>Background Image</div>
+                <div class="settings__action">
+                    <fa-icon
+                        (click)="saveImage()"
+                        *ngIf="hasImageChanged"
+                        [icon]="faSave"
+                        size="x"
+                    ></fa-icon>
+                </div>
+            </div>
+            <input
+                #fileRef
+                class="settings__inputFile"
+                (change)="fileUpload($event.target.files[0] || null)"
+                type="file"
+            />
+            <div
+                #fileContainerRef
+                class="settings__fileContainer"
+                (click)="openDialog()"
+            >
+                <div
+                    (drop)="fileDrop($event)"
+                    class="settings__filePlaceholder"
+                >
+                    <div class="settings__fileUploadIcon">
+                        <fa-icon [icon]="faUpload" size="2x"></fa-icon>
+                    </div>
+                    <div>drag and drop or click to upload</div>
+                </div>
+                <div
+                    class="settings__filePreview"
+                    [ngStyle]="previewStyle"
+                ></div>
+            </div>
+        </div>
+        <div class="settings__field">
+            <div class="settings__fieldHeader">
+                <div>About me</div>
+                <div class="settings__action">
+                    <fa-icon
+                        (click)="set('aboutMe', false)"
+                        *ngIf="aboutMe.enabled; else notEditingAboutMe"
+                        [icon]="faSave"
+                        size="x"
+                    ></fa-icon>
+                    <ng-template #notEditingAboutMe>
+                        <fa-icon
+                            (click)="set('aboutMe', true)"
+                            [icon]="faEdit"
+                            size="x"
+                        ></fa-icon>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="settings__textareaWrapper">
+                <textarea
+                    #aboutMeRef
+                    *ngIf="aboutMe.enabled; else notEditingAboutMe1"
+                    class="settings__textarea"
+                    formControlName="aboutMe"
+                    placeholder="Tell something about yourself"
+                ></textarea>
+                <ng-template #notEditingAboutMe1>
+                    <div class="settings__textareaLabel">
+                        {{ aboutMe.value }}
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="settings__field">
+            <div class="settings__fieldHeader">
+                <div>Email</div>
+                <div
+                    class="settings__action"
+                    [class.settings__action--disabled]="email.invalid"
+                >
+                    <fa-icon
+                        (click)="set('email', false)"
+                        *ngIf="email.enabled; else notEditingEmail"
+                        [icon]="faSave"
+                        size="x"
+                    ></fa-icon>
+                    <ng-template #notEditingEmail>
+                        <fa-icon
+                            (click)="set('email', true)"
+                            [icon]="faEdit"
+                            size="x"
+                        ></fa-icon>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="settings__inputWrapper">
+                <input
+                    #emailRef
+                    *ngIf="email.enabled; else notEditingEmail1"
+                    class="settings__input"
+                    type="email"
+                    formControlName="email"
+                    placeholder="Enter email"
+                />
+                <ng-template #notEditingEmail1>
+                    <div class="settings__inputLabel">{{ email.value }}</div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="settings__field">
+            <div class="settings__fieldHeader">
+                <div>Display Name</div>
+                <div
+                    class="settings__action"
+                    [class.settings__action--disabled]="displayName.invalid"
+                >
+                    <fa-icon
+                        (click)="set('displayName', false)"
+                        *ngIf="displayName.enabled; else notEditingDisplayName"
+                        [icon]="faSave"
+                        size="x"
+                    ></fa-icon>
+                    <ng-template #notEditingDisplayName>
+                        <fa-icon
+                            (click)="set('displayName', true)"
+                            [icon]="faEdit"
+                            size="x"
+                        ></fa-icon>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="settings__inputWrapper">
+                <input
+                    #displayNameRef
+                    *ngIf="displayName.enabled; else notEditingDisplayName1"
+                    class="settings__input"
+                    type="text"
+                    formControlName="displayName"
+                    placeholder="Enter display name"
+                />
+                <ng-template #notEditingDisplayName1>
+                    <div class="settings__inputLabel">
+                        {{ displayName.value }}
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </form>
+</div>

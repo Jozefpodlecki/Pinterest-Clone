@@ -1,0 +1,96 @@
+@import "./utils";
+@import "./variables";
+
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    &__header {
+        padding: 1rem;
+    }
+
+    &__loader {
+        height: 100%;
+        @include flex-center;
+    }
+
+    &__background {
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    &__backIcon {
+        cursor: pointer;
+    }
+
+    &__content {
+        flex: 1 1 auto;
+        display: flex;
+    }
+
+    &__left {
+        flex: 0 0 50%;
+    }
+
+    &__right {
+        flex: 0 1 50%;
+        background: transparentize($white, 0.8);
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__details {
+        padding: 1rem;
+    }
+
+    &__title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    &__description {
+    }
+
+    &__commentsMoreWrapper {
+        text-align: center;
+    }
+
+    &__commentsMoreText {
+        cursor: pointer;
+    }
+
+    &__comments {
+        flex: 1 1 auto;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $white;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: $gray;
+        }
+
+        &--active {
+            height: 300px;
+            opacity: 1;
+        }
+    }
+
+    &__commentsWrapper {
+        height: 0;
+    }
+}

@@ -1,0 +1,36 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.user {
+    &__header {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    &__avatar {
+        width: 100px;
+    }
+
+    &__category {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    &__images {
+        width: 100%;
+        flex: 1 1 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-auto-rows: 300px;
+        grid-row-gap: 0.5rem;
+        grid-column-gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    &__image {
+    }
+}

@@ -1,0 +1,23 @@
+<div class="comment__details">
+    <div class="comment__header">
+        <div class="comment__headerLeft">
+            <div
+                class="comment__avatar"
+                [ngStyle]="commentAvatar(comment)"
+            ></div>
+            <div>{{ comment.author }}</div>
+        </div>
+        <div>{{ comment.created | date: "short" }}</div>
+    </div>
+    <div class="comment__content">
+        {{ comment.text }}
+    </div>
+    <div class="comment__footer">
+        <div class="comment__action">
+            <fa-icon class="comment__icon" [icon]="faFlag"></fa-icon>
+        </div>
+        <div class="comment__action">
+            <fa-icon class="comment__icon" [icon]="faTrash"></fa-icon>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Animal",
+    "link": "images/categories/animals.jpg"
+  },
+  {
+    "name": "Art",
+    "link": "images/categories/art.webp"
+  },
+  {
+    "name": "City",
+    "link": "images/categories/city.jpg"
+  },
+  {
+    "name": "Cuisine",
+    "link": "images/categories/cuisine.webp"
+  },
+  {
+    "name": "Forest",
+    "link": "images/categories/forest.jpg"
+  },
+  {
+    "name": "Space",
+    "link": "images/categories/space.jpg"
+  }
+]

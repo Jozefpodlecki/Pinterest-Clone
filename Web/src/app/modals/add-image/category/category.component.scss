@@ -1,0 +1,23 @@
+@import "./utils";
+@import "./variables";
+
+:host {
+    @include flex-center;
+    cursor: pointer;
+    transition: border 0.3s ease-in;
+
+    &.selected {
+        border: 1px solid $white;
+    }
+}
+
+.background {
+    position: absolute;
+    z-index: -1;
+    filter: brightness(0.5);
+    transition: filter 0.3s ease-in;
+
+    &--active {
+        filter: brightness(0.8);
+    }
+}

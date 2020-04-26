@@ -1,0 +1,14 @@
+<div class="modal__content">
+    <div class="modal__header">
+        <span (click)="closeModal()" class="modal__close">
+            <fa-icon
+                class="modal__closeIcon"
+                [icon]="faTimes"
+                size="2x"
+            ></fa-icon>
+        </span>
+    </div>
+    <div class="modal__imageWrapper">
+        <div class="modal__image" [ngStyle]="backgroundStyle"></div>
+    </div>
+</div>

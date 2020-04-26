@@ -1,0 +1,47 @@
+<div [ngSwitch]="state" class="modal">
+    <div *ngSwitchCase="'loading'">
+        <loader></loader>
+    </div>
+    <div class="sent" *ngSwitchCase="'sent'">
+        <div class="sent__header">Thank you!</div>
+        <div class="sent__snippet">We will look into it!</div>
+    </div>
+    <ng-container *ngSwitchCase="'form'">
+        <div class="modal__header">
+            <span (click)="closeModal()" class="modal__close">
+                <fa-icon
+                    class="modal__closeIcon"
+                    [icon]="faTimes"
+                    size="2x"
+                ></fa-icon>
+            </span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__contentHeader">What's wrong with the image?</div>
+            <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+                <select-control
+                    formControlName="reason"
+                    [defaultValue]="defaultValue"
+                    [values]="reasons"
+                ></select-control>
+                <div
+                    class="error"
+                    *ngIf="reason.invalid && (reason.dirty || reason.touched)"
+                >
+                    <div class="error__text" *ngIf="reason.errors.server">
+                        An error occurred when sending report. Please try again
+                    </div>
+                </div>
+                <div class="modal__submitWrapper">
+                    <button
+                        [disabled]="reportForm.invalid"
+                        class="modal__submit"
+                        type="submit"
+                    >
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+</div>

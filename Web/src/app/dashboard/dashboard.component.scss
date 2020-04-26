@@ -1,0 +1,99 @@
+@import "./utils";
+@import "./variables";
+
+:host {
+    width: 100%;
+    @include flex-center;
+}
+
+.dashboard {
+    &__wrapper {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-auto-rows: 300px;
+        grid-row-gap: 0.5rem;
+        grid-column-gap: 0.5rem;
+    }
+
+    &__header {
+        display: flex;
+    }
+
+    &__clearIcon {
+        transition: opacity 0.5s ease-in-out;
+        cursor: pointer;
+        opacity: 0;
+
+        &--active {
+            opacity: 1;
+        }
+    }
+
+    &__searchWrapper {
+        margin: auto;
+        flex: 0 1 500px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__searchBox {
+        &:after {
+            content: "";
+            display: block;
+            margin-top: 0.5rem;
+            border-bottom: solid 2px transparentize($white, 0.5);
+            transform: scaleX(0);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        &--active:after {
+            transform: scaleX(1);
+        }
+    }
+
+    &__searchInput {
+        display: block;
+        width: 100%;
+        background: transparentize($white, 0.7);
+        background: transparent;
+        color: $white;
+        border: none;
+        padding: 0.5rem 0.5rem 0 0.5rem;
+        text-align: center;
+        font-size: 3rem;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::selection {
+            background: transparentize($black, 0.5);
+        }
+
+        &::placeholder {
+            color: transparentize($white, 0.2);
+        }
+    }
+}
+
+.error {
+    text-align: center;
+
+    &__header {
+        font-size: 2rem;
+    }
+
+    &__header,
+    &__snippet {
+        margin-bottom: 1rem;
+    }
+
+    &__action {
+        cursor: pointer;
+    }
+}
