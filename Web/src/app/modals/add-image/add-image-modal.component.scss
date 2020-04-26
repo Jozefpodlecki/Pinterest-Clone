@@ -1,5 +1,5 @@
-@import './utils';
-@import './variables';
+@import "./utils";
+@import "./variables";
 
 :host {
     @include modal;
@@ -20,7 +20,7 @@
     text-align: center;
 
     &__header {
-        font-size: 2rem;    
+        font-size: 2rem;
         margin-bottom: 1rem;
     }
 
@@ -40,9 +40,9 @@
     &__input {
         color: $white;
         background: transparent;
-        padding: .5rem;
+        padding: 0.5rem;
         border: 1px solid $white;
-    
+
         &::placeholder {
             color: $white;
         }
@@ -54,8 +54,7 @@
 
     &__button {
         @include button;
-        transition: color .3s ease-in,
-            border-color .3s ease-in;
+        transition: color 0.3s ease-in, border-color 0.3s ease-in;
 
         &:disabled {
             color: $gray;

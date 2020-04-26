@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable, fromEvent } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { fromEvent, Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: "root",
 })
 export class WindowService {
+    onResize: Observable<Event>;
 
-  onResize: Observable<Event>;
-
-  constructor() {
-    this.onResize = fromEvent(window, 'resize');
-  }
+    constructor() {
+        this.onResize = fromEvent(window, "resize");
+    }
 }

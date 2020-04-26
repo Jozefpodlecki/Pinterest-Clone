@@ -4,19 +4,34 @@
     </div>
     <div class="content">
         <div class="content__close">
-            <fa-icon (click)="closeModal()" class="content__closeIcon" [icon]="faTimes" size="x"></fa-icon>
+            <fa-icon
+                (click)="closeModal()"
+                class="content__closeIcon"
+                [icon]="faTimes"
+                size="x"
+            ></fa-icon>
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="field">
                 <label for="usernameOrEmail">Username/Email</label>
-                <input class="field__input" id="usernameOrEmail" type="text" placeholder="Enter username or email..."/>
+                <input
+                    class="field__input"
+                    id="usernameOrEmail"
+                    type="text"
+                    placeholder="Enter username or email..."
+                />
             </div>
             <div class="field">
                 <label for="password">Password</label>
-                <input class="field__input" id="password" type="password" placeholder="Enter password..."/>
+                <input
+                    class="field__input"
+                    id="password"
+                    type="password"
+                    placeholder="Enter password..."
+                />
             </div>
             <div class="field field__submitWrapper">
-                <input class="field__submit" type="submit" value="Sign In"/>
+                <input class="field__submit" type="submit" value="Sign In" />
             </div>
             <div class="field field__socialWrapper">
                 <div class="field__social" (click)="signInWithGithub()">

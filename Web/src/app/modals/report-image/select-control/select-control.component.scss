@@ -1,5 +1,5 @@
-@import './utils';
-@import './variables';
+@import "./utils";
+@import "./variables";
 
 :host {
     display: block;
@@ -8,7 +8,7 @@
 .option {
     margin: 1rem 0;
     cursor: pointer;
-    transition: color .3s ease-in;
+    transition: color 0.3s ease-in;
     color: $white;
 
     &:hover {
@@ -23,7 +23,7 @@
 
     &__title {
         font-size: 1.5rem;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
     }
 
     &__current {
@@ -35,10 +35,10 @@
         display: flex;
         align-items: center;
         padding: 1rem;
-        transition: color .3s ease-in,
-            border .3s ease-in;
+        transition: color 0.3s ease-in, border 0.3s ease-in;
 
-        &--toggle , &:hover {
+        &--toggle,
+        &:hover {
             color: $gray;
             border-color: $gray;
         }
@@ -52,7 +52,7 @@
         padding: 8px;
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
-        transition: transform .3s ease-in;
+        transition: transform 0.3s ease-in;
 
         &--toggle {
             transform: rotate(-45deg);
@@ -70,15 +70,14 @@
         background: $black;
         overflow-y: scroll;
         height: 0px;
-        transition: height .3s ease-in,
-            opacity .3s ease-in;
+        transition: height 0.3s ease-in, opacity 0.3s ease-in;
         opacity: 0;
         margin-top: -1rem;
-        
-        @mixin test () {
+
+        @mixin test() {
             &::-webkit-scrollbar {
                 width: 6px;
-            }    
+            }
         }
 
         &::-webkit-scrollbar {

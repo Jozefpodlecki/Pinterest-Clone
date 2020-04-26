@@ -1,18 +1,17 @@
-import { BaseEnvironment } from './BaseEnvironment';
+import { BaseEnvironment } from "./BaseEnvironment";
 
 class ProdEnvironment extends BaseEnvironment {
+    constructor() {
+        super();
+    }
 
-  constructor() {
-    super();
-  }
+    get isProduction(): boolean {
+        return false;
+    }
 
-  get isProduction(): boolean {
-    return false;
-  }
-
-  get useFakeServices(): boolean {
-    return false;
-  }
+    get useFakeServices(): boolean {
+        return false;
+    }
 }
 
-export default new ProdEnvironment()
+export default new ProdEnvironment();

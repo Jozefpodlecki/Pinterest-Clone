@@ -1,7 +1,7 @@
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Profile } from '@models/profile';
-import { GenericCredentials } from '@models/GenericCredentials';
-import { UpdateProfile } from '@models/UpdateProfile';
+import { GenericCredentials } from "@models/GenericCredentials";
+import { Profile } from "@models/profile";
+import { UpdateProfile } from "@models/UpdateProfile";
+import { BehaviorSubject, Observable } from "rxjs";
 
 export default abstract class UserService {
     abstract signOut(): void;

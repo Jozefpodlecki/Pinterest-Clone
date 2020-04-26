@@ -1,5 +1,5 @@
-@import './utils';
-@import './variables';
+@import "./utils";
+@import "./variables";
 
 :host {
     @include modal;
@@ -11,7 +11,7 @@
     &__close {
         cursor: pointer;
     }
-    
+
     &__header {
         font-size: 2rem;
         margin-bottom: 1rem;
@@ -19,16 +19,16 @@
     }
 
     &__content {
-        padding: 0 1rem;   
+        padding: 0 1rem;
     }
-    
+
     &__actions {
         display: flex;
         justify-content: center;
     }
-    
+
     &__action {
-        padding: .5rem;
+        padding: 0.5rem;
         cursor: pointer;
     }
 }

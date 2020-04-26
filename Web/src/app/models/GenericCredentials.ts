@@ -1,4 +1,4 @@
 export interface GenericCredentials {
-    usernameOrEmail: string,
-    password: string
-  }
+    usernameOrEmail: string;
+    password: string;
+}

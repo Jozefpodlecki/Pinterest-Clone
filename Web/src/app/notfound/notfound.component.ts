@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { faSadTear } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from "@angular/core";
+import { faSadTear } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'notfound',
-  templateUrl: './notfound.component.html',
-  styleUrls: ['./notfound.component.scss']
+    selector: "notfound",
+    templateUrl: "./notfound.component.html",
+    styleUrls: ["./notfound.component.scss"],
 })
 export class NotfoundComponent implements OnInit {
-  faSadTear = faSadTear;
-  
-  constructor() { }
+    faSadTear = faSadTear;
 
-  ngOnInit(): void {
-  }
+    constructor() {}
 
+    ngOnInit(): void {}
 }

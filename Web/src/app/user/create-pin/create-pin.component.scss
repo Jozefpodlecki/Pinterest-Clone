@@ -1,5 +1,5 @@
-@import './utils';
-@import './variables';
+@import "./utils";
+@import "./variables";
 
 :host {
     width: 100%;
@@ -7,7 +7,6 @@
 }
 
 .create-pin {
-
     &__content {
         flex: 0 0 500px;
         flex-direction: column;
@@ -30,7 +29,8 @@
         margin-top: 1rem;
     }
 
-    &__input, &__textarea {
+    &__input,
+    &__textarea {
         @include baseInput;
         color: transparentize($white, 0.2);
 
@@ -52,8 +52,7 @@
         @include baseInput;
         border: 1px solid $white;
         cursor: pointer;
-        transition: color .3s ease-in,
-            border .3s ease-in;
+        transition: color 0.3s ease-in, border 0.3s ease-in;
 
         &:disabled {
             cursor: none;

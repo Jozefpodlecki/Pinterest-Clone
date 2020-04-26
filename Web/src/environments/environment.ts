@@ -1,18 +1,17 @@
-import { BaseEnvironment } from './BaseEnvironment';
+import { BaseEnvironment } from "./BaseEnvironment";
 
 class LocalEnvironment extends BaseEnvironment {
+    constructor() {
+        super();
+    }
 
-  constructor() {
-    super();
-  }
+    get isProduction(): boolean {
+        return false;
+    }
 
-  get isProduction(): boolean {
-    return false;
-  }
-
-  get useFakeServices(): boolean {
-    return true;
-  }
+    get useFakeServices(): boolean {
+        return true;
+    }
 }
 
-export default new LocalEnvironment()
+export default new LocalEnvironment();

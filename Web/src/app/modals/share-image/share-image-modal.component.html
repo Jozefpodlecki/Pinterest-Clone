@@ -1,13 +1,21 @@
 <div class="modal">
     <div class="modal__header">
         <span (click)="closeModal()" class="modal__close">
-            <fa-icon class="modal__closeIcon" [icon]="faTimes" size="x"></fa-icon>
+            <fa-icon
+                class="modal__closeIcon"
+                [icon]="faTimes"
+                size="x"
+            ></fa-icon>
         </span>
     </div>
     <div class="modal__content">
         <div class="modal__header">Share image in following platforms!</div>
         <div class="modal__actions">
-            <div *ngFor="let action of actions; trackBy: trackByName" (click)="shareVia(action.name)" class="modal__action">
+            <div
+                *ngFor="let action of actions; trackBy: trackByName"
+                (click)="shareVia(action.name)"
+                class="modal__action"
+            >
                 <fa-icon [icon]="action.icon" size="2x"></fa-icon>
             </div>
         </div>

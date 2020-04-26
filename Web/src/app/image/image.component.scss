@@ -1,5 +1,5 @@
-@import './utils';
-@import './variables';
+@import "./utils";
+@import "./variables";
 
 :host {
     width: 100%;
@@ -40,7 +40,7 @@
 
     &__right {
         flex: 0 1 50%;
-        background: transparentize($white, .8);
+        background: transparentize($white, 0.8);
         display: flex;
         flex-direction: column;
     }
@@ -55,7 +55,6 @@
     }
 
     &__description {
-        
     }
 
     &__commentsMoreWrapper {

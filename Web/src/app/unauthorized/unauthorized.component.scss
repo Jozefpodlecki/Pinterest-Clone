@@ -1,5 +1,5 @@
-@import './utils';
-@import './variables';
+@import "./utils";
+@import "./variables";
 
 :host {
     width: 100%;
@@ -11,7 +11,8 @@
     text-align: center;
 }
 
-.icon, .text {
+.icon,
+.text {
     margin-bottom: 1rem;
 }
 
@@ -23,7 +24,8 @@
     text-align: right;
 }
 
-.submit, .textarea {
+.submit,
+.textarea {
     color: transparentize($white, 0.1);
 }
 
@@ -48,7 +50,7 @@
 .submit {
     @include button;
     margin-top: 1rem;
-    
+
     &:disabled {
         color: $gray;
         border: 1px solid $gray;

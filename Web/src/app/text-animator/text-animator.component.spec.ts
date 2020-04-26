@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TextAnimatorComponent } from './text-animator.component';
+import { TextAnimatorComponent } from "./text-animator.component";
 
-describe('TextAnimatorComponent', () => {
-  let component: TextAnimatorComponent;
-  let fixture: ComponentFixture<TextAnimatorComponent>;
+describe("TextAnimatorComponent", () => {
+    let component: TextAnimatorComponent;
+    let fixture: ComponentFixture<TextAnimatorComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TextAnimatorComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [TextAnimatorComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TextAnimatorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TextAnimatorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });

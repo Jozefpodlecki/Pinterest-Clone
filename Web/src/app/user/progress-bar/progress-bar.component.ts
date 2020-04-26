@@ -1,41 +1,38 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'progress-bar',
-  templateUrl: './progress-bar.component.html',
-  styleUrls: ['./progress-bar.component.scss']
+    selector: "progress-bar",
+    templateUrl: "./progress-bar.component.html",
+    styleUrls: ["./progress-bar.component.scss"],
 })
 export class ProgressBarComponent implements OnInit {
+    @Input() width: any;
+    @Input() height: number;
+    @Input() value: number;
 
-  @Input() width: any;
-  @Input() height: number;
-  @Input() value: number;
-
-  get progressBarValue() {
-    return `${this.value * 100}%`;
-  }
-
-  @HostBinding("style.width")
-  get getWidth() {
-    if(this.width === 'auto') {
-      return 'auto';
+    get progressBarValue() {
+        return `${this.value * 100}%`;
     }
 
-    return `${this.width}px`
-  }
+    @HostBinding("style.width")
+    get getWidth() {
+        if (this.width === "auto") {
+            return "auto";
+        }
 
-  @HostBinding("style.height")
-  get getHeight() {
-    return `${this.height}px`
-  }
+        return `${this.width}px`;
+    }
 
-  constructor() {
-    this.width = 100;
-    this.height = 20;
-    this.value = 0;
-  }
+    @HostBinding("style.height")
+    get getHeight() {
+        return `${this.height}px`;
+    }
 
-  ngOnInit(): void {
-  }
+    constructor() {
+        this.width = 100;
+        this.height = 20;
+        this.value = 0;
+    }
 
+    ngOnInit(): void {}
 }

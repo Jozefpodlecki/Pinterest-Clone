@@ -2,4 +2,4 @@
 
 # User story
 
-* I should be able to download Pinterest images
+- I should be able to download Pinterest images

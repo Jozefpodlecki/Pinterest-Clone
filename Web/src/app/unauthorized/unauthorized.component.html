@@ -7,7 +7,11 @@
         <div class="form">
             <form [formGroup]="requestAccessForm" (ngSubmit)="onSubmit()">
                 <div>
-                    <textarea class="textarea" formControlName="text" placeholder="Tell us why would you like to access it...">
+                    <textarea
+                        class="textarea"
+                        formControlName="text"
+                        placeholder="Tell us why would you like to access it..."
+                    >
                     </textarea>
                     <div *ngIf="text.invalid && (text.dirty || text.touched)">
                         <div *ngIf="text.errors.minlength">
@@ -16,7 +20,12 @@
                     </div>
                 </div>
                 <div>
-                    <input [disabled]="requestAccessForm.invalid" class="submit" type="submit" value="Submit"/>
+                    <input
+                        [disabled]="requestAccessForm.invalid"
+                        class="submit"
+                        type="submit"
+                        value="Submit"
+                    />
                 </div>
             </form>
         </div>

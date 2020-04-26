@@ -1,1 +1,6 @@
-<div class="badge" [disabled]="selected?.id === option.id" (click)="selectOption(option)" *ngFor="let option of options; trackBy: trackById"></div>
+<div
+    class="badge"
+    [disabled]="selected?.id === option.id"
+    (click)="selectOption(option)"
+    *ngFor="let option of options; trackBy: trackById"
+></div>

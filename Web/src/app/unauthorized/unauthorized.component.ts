@@ -1,30 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { faShieldAlt } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { faShieldAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'unauthorized',
-  templateUrl: './unauthorized.component.html',
-  styleUrls: ['./unauthorized.component.scss']
+    selector: "unauthorized",
+    templateUrl: "./unauthorized.component.html",
+    styleUrls: ["./unauthorized.component.scss"],
 })
 export class UnauthorizedComponent implements OnInit {
-  faShieldAlt = faShieldAlt;
-  
-  requestAccessForm: FormGroup;
-  text: FormControl;
-  constructor() {
-    this.text = new FormControl('', [Validators.required, Validators.minLength(10)])
+    faShieldAlt = faShieldAlt;
 
-    this.requestAccessForm = new FormGroup({
-      text: this.text
-    });
-  }
+    requestAccessForm: FormGroup;
+    text: FormControl;
+    constructor() {
+        this.text = new FormControl("", [
+            Validators.required,
+            Validators.minLength(10),
+        ]);
 
-  ngOnInit(): void {
-  }
+        this.requestAccessForm = new FormGroup({
+            text: this.text,
+        });
+    }
 
-  onSubmit() {
-    console.log(this.requestAccessForm.value);
-  }
+    ngOnInit(): void {}
 
+    onSubmit() {
+        console.log(this.requestAccessForm.value);
+    }
 }

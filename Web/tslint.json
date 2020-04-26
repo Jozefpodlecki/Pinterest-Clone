@@ -3,5 +3,11 @@
         "tslint:recommended",
         "tslint-angular",
         "tslint-config-prettier"
-    ]
+    ],
+    "rules": {
+        "interface-name": false,
+        "no-input-rename": false,
+        "no-output-on-prefix": false,
+        "no-console": false
+    }
 }

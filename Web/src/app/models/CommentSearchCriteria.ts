@@ -1,5 +1,5 @@
-import { PageCriteria } from './PageCriteria';
+import { PageCriteria } from "./PageCriteria";
 
 export interface CommentSearchCriteria extends PageCriteria {
-    imageId: number
+    imageId: number;
 }

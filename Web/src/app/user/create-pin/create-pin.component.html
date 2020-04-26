@@ -1,26 +1,57 @@
 <div class="create-pin__content">
     <div class="create-pin__header">Create new pin</div>
     <ng-template #formBlock>
-        <form autocomplete="off" [formGroup]="createPinForm" (ngSubmit)="onSubmit()">
+        <form
+            autocomplete="off"
+            [formGroup]="createPinForm"
+            (ngSubmit)="onSubmit()"
+        >
             <image-upload formControlName="image"></image-upload>
             <div class="create-pin__field">
-                <input class="create-pin__input" formControlName="title" type="text" placeholder="Enter title..."/>
+                <input
+                    class="create-pin__input"
+                    formControlName="title"
+                    type="text"
+                    placeholder="Enter title..."
+                />
             </div>
             <div class="create-pin__field">
-                <textarea class="create-pin__textarea" formControlName="description" placeholder="Describe image...">
+                <textarea
+                    class="create-pin__textarea"
+                    formControlName="description"
+                    placeholder="Describe image..."
+                >
                 </textarea>
             </div>
             <div class="create-pin__field">
-                <input class="create-pin__input" formControlName="category" type="text" placeholder="Enter category..."/>
+                <input
+                    class="create-pin__input"
+                    formControlName="category"
+                    type="text"
+                    placeholder="Enter category..."
+                />
             </div>
             <div class="create-pin__field">
-                <button [disabled]="createPinForm.invalid" class="create-pin__submit" type="submit">Create</button>
+                <button
+                    [disabled]="createPinForm.invalid"
+                    class="create-pin__submit"
+                    type="submit"
+                >
+                    Create
+                </button>
             </div>
         </form>
     </ng-template>
     <div *ngIf="loading; else formBlock" class="create-pin__loading">
         <div class="create-pin__loadingHeader">Sending...</div>
-        <progress-bar [value]="progressValue" [width]="auto" [height]="10"></progress-bar>
-        <text-animator class="create-pin__loadingValue" [value]="(progressValue * 100).toFixed(0) + '%'"></text-animator>
+        <progress-bar
+            [value]="progressValue"
+            [width]="auto"
+            [height]="10"
+        ></progress-bar>
+        <text-animator
+            class="create-pin__loadingValue"
+            [value]="(progressValue * 100).toFixed(0) + '%'"
+        ></text-animator>
     </div>
 </div>

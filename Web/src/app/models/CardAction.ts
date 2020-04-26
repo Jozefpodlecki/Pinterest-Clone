@@ -3,5 +3,5 @@ export enum CardAction {
     Add,
     Share,
     Report,
-    Remove
-  }
+    Remove,
+}

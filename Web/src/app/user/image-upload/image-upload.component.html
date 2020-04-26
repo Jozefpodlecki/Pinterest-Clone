@@ -1,5 +1,10 @@
 <div class="content" (click)="openDialog()">
-    <input class="content__fileInput" #file (change)="fileUpload($event.target.files[0] || null)" type="file"/>
+    <input
+        class="content__fileInput"
+        #file
+        (change)="fileUpload($event.target.files[0] || null)"
+        type="file"
+    />
     <div class="content__wrapper">
         <div class="content__icon">
             <fa-icon [icon]="faUpload" size="2x"></fa-icon>

@@ -1,74 +1,67 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { trackById } from '@utils';
-import { ReportReason } from '@models/ReportReason';
+import { Component, forwardRef, Input, OnInit } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ReportReason } from "@models/ReportReason";
+import { trackById } from "@utils";
 
 @Component({
-  selector: 'select-control',
-  templateUrl: './select-control.component.html',
-  styleUrls: ['./select-control.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectControlComponent),
-      multi: true
-    }
-  ]
+    selector: "select-control",
+    templateUrl: "./select-control.component.html",
+    styleUrls: ["./select-control.component.scss"],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SelectControlComponent),
+            multi: true,
+        },
+    ],
 })
-export class SelectControlComponent implements ControlValueAccessor  {
-  trackById = trackById;
-  
-  @Input() defaultValue: ReportReason;
-  currentValue: ReportReason;
-  @Input("values") options: ReportReason[];
-  isPopupOpen: boolean;
+export class SelectControlComponent implements ControlValueAccessor {
+    trackById = trackById;
 
-  constructor() {
-    this.options = [];
-    this.isPopupOpen = false;
-    this.defaultValue = {
-      id: -1,
-      title: '',
-      description: ''
-    };
-    this.currentValue = this.defaultValue;
-  }
+    @Input() defaultValue: ReportReason;
+    currentValue: ReportReason;
+    @Input("values") options: ReportReason[];
+    isPopupOpen: boolean;
 
-  onChange(value: any) {
-
-  }
-
-  onTouch() {
-
-  }
-
-  writeValue(option: any): void {
-    if(!option) {
-      this.currentValue = this.defaultValue;
-      return;
+    constructor() {
+        this.options = [];
+        this.isPopupOpen = false;
+        this.defaultValue = {
+            id: -1,
+            title: "",
+            description: "",
+        };
+        this.currentValue = this.defaultValue;
     }
-    
-  }
 
-  registerOnChange(callback: () => void): void {
-    this.onChange = callback;
-  }
-  
-  registerOnTouched(callback: () => void): void {
-    this.onTouch = callback;
-  }
-  
-  setDisabledState?(isDisabled: boolean): void {
-    
-  }
+    onChange(value: any) {}
 
-  selectOption(option: any) {
-    this.currentValue = option;
-    this.toggleDropdown();
-    this.onChange(this.currentValue);
-  }
+    onTouch() {}
 
-  toggleDropdown() {
-    this.isPopupOpen = !this.isPopupOpen;
-  }
+    writeValue(option: any): void {
+        if (!option) {
+            this.currentValue = this.defaultValue;
+            return;
+        }
+    }
+
+    registerOnChange(callback: () => void): void {
+        this.onChange = callback;
+    }
+
+    registerOnTouched(callback: () => void): void {
+        this.onTouch = callback;
+    }
+
+    setDisabledState?(isDisabled: boolean): void {}
+
+    selectOption(option: any) {
+        this.currentValue = option;
+        this.toggleDropdown();
+        this.onChange(this.currentValue);
+    }
+
+    toggleDropdown() {
+        this.isPopupOpen = !this.isPopupOpen;
+    }
 }

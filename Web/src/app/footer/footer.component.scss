@@ -15,8 +15,8 @@ $white: white;
 
     &__action {
         color: $white;
-        margin: 0 .5rem;
-        transition: transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        margin: 0 0.5rem;
+        transition: transform 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 
         svg:hover {
             transform: rotate(90deg);

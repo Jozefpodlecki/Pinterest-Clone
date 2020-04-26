@@ -1,28 +1,27 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'add-comment-form',
-  templateUrl: './add-comment-form.component.html',
-  styleUrls: ['./add-comment-form.component.scss']
+    selector: "add-comment-form",
+    templateUrl: "./add-comment-form.component.html",
+    styleUrls: ["./add-comment-form.component.scss"],
 })
 export class AddCommentFormComponent implements OnInit {
-  faPaperPlane = faPaperPlane;
+    faPaperPlane = faPaperPlane;
 
-  commentForm: FormGroup;
-  text: FormControl;
-  @Output() sendComment: EventEmitter<any>;
+    commentForm: FormGroup;
+    text: FormControl;
+    @Output() sendComment: EventEmitter<any>;
 
-  constructor() {
-    this.sendComment = new EventEmitter();
-    this.text = new FormControl('', [Validators.required]);
+    constructor() {
+        this.sendComment = new EventEmitter();
+        this.text = new FormControl("", [Validators.required]);
 
-    this.commentForm = new FormGroup({
-      text: this.text,
-    });
-  }
+        this.commentForm = new FormGroup({
+            text: this.text,
+        });
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
 }

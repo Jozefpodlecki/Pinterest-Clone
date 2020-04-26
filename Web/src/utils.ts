@@ -1,28 +1,29 @@
-import ImageService from '@services/image-service';
+import ImageService from "@services/image-service";
 
 interface Identity {
-  id: number;
+    id: number;
 }
 
 interface HasName {
-  name: string;
+    name: string;
 }
 
-export const computeBackgroundStyle = (link) => `url(${link}) center center / cover no-repeat`
+export const computeBackgroundStyle = (link) =>
+    `url(${link}) center center / cover no-repeat`;
 
 export const trackById = (index: number, item: Identity) => {
-  return item.id;
-}
+    return item.id;
+};
 
 export const trackByName = (element: HasName, index: number) => {
-  return element.name;
-}
+    return element.name;
+};
 
 export const createClipPath = () => {
-    let result = 'polygon(0% 0%,';
+    let result = "polygon(0% 0%,";
 
     const random = (from, to) => Math.floor(Math.random() * (to - from) + from);
-    
+
     result = result + `${random(0, 30)}% 5%,`;
     result = result + `${random(30, 70)}% 0%,`;
     result = result + `${random(70, 90)}% 5%,`;
@@ -41,9 +42,13 @@ export const createClipPath = () => {
     result = result + `0% 0%)`;
 
     return result;
-  }
+};
 
-export const sendFile = async (imageService: ImageService, image: File, formData: any) => {
+export const sendFile = async (
+    imageService: ImageService,
+    image: File,
+    formData: any
+) => {
     const chunkSize = 1024 * 64;
     const chunksAmount = Math.ceil(image.size / chunkSize);
     let chunkIndex = 0;
@@ -51,41 +56,40 @@ export const sendFile = async (imageService: ImageService, image: File, formData
     let indexEnd = indexStart + chunkSize;
     let imageId = null;
 
-    if(chunksAmount === 1) {
-      indexEnd = chunkSize;
+    if (chunksAmount === 1) {
+        indexEnd = chunkSize;
     }
-      
+
     do {
-      
-      const blob = image.slice(indexStart, indexEnd);
-      const buffer = await (blob as any).arrayBuffer();
-      const array = new Uint8Array(buffer);
+        const blob = image.slice(indexStart, indexEnd);
+        const buffer = await (blob as any).arrayBuffer();
+        const array = new Uint8Array(buffer);
 
-      const result = await imageService.addImage({
-        ...formData,
-        fileType: image.type,
-        fileName: image.name,
-        imageId,
-        data: array,
-        offset: indexStart
-      }).toPromise();
-      
-      this.progressValue = chunkIndex / (chunksAmount - 1);
+        const result = await imageService
+            .addImage({
+                ...formData,
+                fileType: image.type,
+                fileName: image.name,
+                imageId,
+                data: array,
+                offset: indexStart,
+            })
+            .toPromise();
 
-      await new Promise((resolve, reject) => setTimeout(resolve, 100));
+        this.progressValue = chunkIndex / (chunksAmount - 1);
 
-      imageId = result.imageId;
+        await new Promise((resolve, reject) => setTimeout(resolve, 100));
 
-      indexStart = indexEnd;
+        imageId = result.imageId;
 
-      if(indexStart + chunkSize > image.size) {
-        indexEnd = image.size;
-      }
-      else {
-        indexEnd = indexStart + chunkSize;
-      }
-      
-      chunkIndex = chunkIndex + 1;
+        indexStart = indexEnd;
 
-    } while(chunksAmount > chunkIndex);
-}
+        if (indexStart + chunkSize > image.size) {
+            indexEnd = image.size;
+        } else {
+            indexEnd = indexStart + chunkSize;
+        }
+
+        chunkIndex = chunkIndex + 1;
+    } while (chunksAmount > chunkIndex);
+};
